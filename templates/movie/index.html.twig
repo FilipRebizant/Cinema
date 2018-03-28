@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista filmów{% endblock %}
+
+{% block body %}
+    {% if moviesList %}
+        {% for movie in moviesList %}
+            {{ movie.name }}
+
+            <tr>
+                <td>
+                    {{ movie.name }}
+                </td>
+                <td>
+                    <a href="" class="btn btn-dark">Click</a>
+                </td>
+            </tr>
+
+        {% endfor %}
+    {% else %}
+        <p>Brak filmów do wyświetlenia</p>
+    {% endif %}
+
+{% endblock %}
