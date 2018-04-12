@@ -8,11 +8,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class HallController extends Controller
 {
     /**
-     * @Route("/hall", name="hall")
+     * @Route("/halls", name="halls")
      */
     public function index()
     {
-        return $this->render('hall/index.html.twig', [
+        return $this->render('halls/index.html.twig', [
             'controller_name' => 'HallController',
         ]);
     }

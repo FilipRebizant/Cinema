@@ -1,5 +1,35 @@
 index:
     path: /
-    controller: App\Controller\DefaultController::index
+    controller: App\Controller\HomeController::index
+    defaults:
+      template: 'home_page.html.twig'
+
+movies:
+    path: /movies
+    controller: App\Controller\MoviesController::index
+    defaults:
+      template: 'movies/index.html.twig'
+
+showMovie:
+    path: /movie/{id}
+    controller: App\Controller\MoviesController::show
+    defaults:
+      template: 'movies/index.html.twig'
+
+addMovie:
+    path: /addMovie
+    controller: App\Controller\MoviesController::create
+    defaults:
+      template: 'movies/addMovie.html.twig'
+
+storeMovie:
+    path: /storeMovie
+    controller: App\Controller\MoviesController::store
+    defaults:
+      template: 'movies/addMovie.html.twig'
+
+halls:
+    path: /halls
+    controller: App\Controller\HallController::index
     defaults:
       template: 'home_page.html.twig'

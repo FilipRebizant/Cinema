@@ -4,19 +4,25 @@
 
 {% block body %}
     {% if moviesList %}
+        <table>
+            <thead>
+                <th>Nazwa</th>
+            </thead>
+
         {% for movie in moviesList %}
-            {{ movie.name }}
 
             <tr>
+                {#<td>{{ movie.id }}</td>#}
                 <td>
                     {{ movie.name }}
                 </td>
                 <td>
-                    <a href="" class="btn btn-dark">Click</a>
+                    <a href="{{ path('showMovie',  {'id': movie.id} ) }}" class="btn btn-dark">Pokaż</a>
                 </td>
             </tr>
 
         {% endfor %}
+        </table>
     {% else %}
         <p>Brak filmów do wyświetlenia</p>
     {% endif %}
