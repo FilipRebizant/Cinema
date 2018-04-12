@@ -15,8 +15,6 @@ class HallController extends Controller
     {
         $hallList = $this->getDoctrine()->getRepository(Hall::class)->findAll();
 
-        var_dump($hallList);
-
         return $this->render('halls/index.html.twig', [
             'hallList' => $hallList,
         ]);
