@@ -1,0 +1,33 @@
+.seats{
+  &__container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5em 0;
+  }
+  &__row{
+    display: flex;
+  }
+  &__seat{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #000000;
+    margin: 2px;
+    &:hover{
+      background: #4e555b;
+      border-color: #666666;
+      cursor: pointer;
+    }
+
+
+    &-active{
+      background: #4e555b;
+      border-color: #666666;
+      cursor: pointer;
+    }
+  }
+}

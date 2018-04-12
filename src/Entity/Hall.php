@@ -71,4 +71,10 @@ class Hall
 
         return $this;
     }
+
+    public function getSeatsNumber()
+    {
+        return $this->number_of_seats_h * $this->number_of_seats_v;
+    }
+
 }
