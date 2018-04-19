@@ -3,7 +3,16 @@
 {% block title %}Lista filmów{% endblock %}
 
 {% block body %}
+    <div class="alert alert-success hide"></div>
     <div id="seats_container" class="seats__container"></div>
+
+
+    <form id="reservation__form" action="{{ path('storeReservation') }}" method="post">
+
+        <button class="btn btn-primary">Rezerwuj</button>
+
+    </form>
+    
 {% endblock %}
 
 {% block javascripts %}
