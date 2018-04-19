@@ -65,12 +65,12 @@ class Reservation
         return $this;
     }
 
-    public function getReservationNumber(): ?string
+    public function getReservationNumber(): ?int
     {
         return $this->reservation_number;
     }
 
-    public function setReservationNumber(string $reservation_number): self
+    public function setReservationNumber(int $reservation_number): self
     {
         $this->reservation_number = $reservation_number;
 
@@ -88,4 +88,5 @@ class Reservation
 
         return $this;
     }
+
 }

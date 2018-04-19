@@ -47,4 +47,14 @@ class ReservationRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findLastReservationNumber()
+    {
+        $qb =  $this->createQueryBuilder('r')
+            ->orderBy('r.reservation_number', 'DESC')
+            ->getQuery();
+
+        return $qb->setMaxResults(1)->getOneOrNullResult()->getReservationNumber();
+    }
+
 }

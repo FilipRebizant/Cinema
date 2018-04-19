@@ -4,7 +4,6 @@ $(document).ready(function () {
 
         row_number: 10,
         seats_number: 10,
-
         reserved_seats: [],
 
         init: function () {
@@ -49,23 +48,26 @@ $(document).ready(function () {
                 row_number = $seat.data('row'),
                 seat_number = $seat.data('seat');
 
-            if (!$seat.hasClass('seats__seat-active')) {
-                $seat.addClass('seats__seat-active');
-                this.reserved_seats.push({
-                    'row': row_number,
-                    'seat': seat_number
-                });
-            } else {
+            if (e.target.parentNode.parentNode === e.delegateTarget) {
 
-                $.each(this.reserved_seats, $.proxy(function (index, value) {
-                    if (value.row == row_number && value.seat == seat_number) {
-                        this.reserved_seats.splice(index, 1);
-                        return false;
-                    }
-                }, this));
+                if (!$seat.hasClass('seats__seat-active')) {
+                    $seat.addClass('seats__seat-active');
+                    this.reserved_seats.push({
+                        'row': row_number,
+                        'seat': seat_number
+                    });
+                } else {
 
-                $seat.removeClass('seats__seat-active');
+                    $.each(this.reserved_seats, $.proxy(function (index, value) {
+                        if (value.row == row_number && value.seat == seat_number) {
+                            this.reserved_seats.splice(index, 1);
+                            return false;
+                        }
+                    }, this));
 
+                    $seat.removeClass('seats__seat-active');
+
+                }
             }
 
         },

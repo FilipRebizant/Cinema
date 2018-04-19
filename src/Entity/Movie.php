@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,6 +23,16 @@ class Movie
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Screening", mappedBy="movie_id")
+     */
+    private $screening;
+
+    public function __construct()
+    {
+        $this->screening = new ArrayCollection();
+    }
+
     public function getId()
     {
         return $this->id;
@@ -34,6 +46,37 @@ class Movie
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Screening[]
+     */
+    public function getScreening(): Collection
+    {
+        return $this->screening;
+    }
+
+    public function addScreening(Screening $screening): self
+    {
+        if (!$this->screening->contains($screening)) {
+            $this->screening[] = $screening;
+            $screening->setMovieId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScreening(Screening $screening): self
+    {
+        if ($this->screening->contains($screening)) {
+            $this->screening->removeElement($screening);
+            // set the owning side to null (unless already changed)
+            if ($screening->getMovieId() === $this) {
+                $screening->setMovieId(null);
+            }
+        }
 
         return $this;
     }

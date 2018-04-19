@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Reservation;
+use App\Entity\Screening;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,16 +28,23 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-
         $seats = $request->get('seats');
         $entityManager = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository(Reservation::class);
+//        $screeningRepository = $this->getDoctrine()->getRepository(Screening::class);
+        $lastReservationNumber = $repository->findLastReservationNumber();
+        $reservationNumber = ++$lastReservationNumber;
+//        $screening = new Screening();
+        var_dump($_GET['id']);
 
         foreach ($seats as $seat) {
             $reservation = new Reservation();
             $reservation->setRow($seat['row']);
             $reservation->setSeat($seat['seat']);
-            $reservation->setReservationNumber(2);
-            $reservation->setScreeningId(2);
+            $reservation->setReservationNumber($reservationNumber);
+
+            $reservation->setScreeningId(2); #TODO Dodać relacje do seansów
+
             $entityManager->persist($reservation);
         }
 
