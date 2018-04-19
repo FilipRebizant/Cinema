@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Screening{% endblock %}
+
+{% block body %}
+    <h1>Edit Screening</h1>
+
+    {{ include('screening/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('screening_index') }}">back to list</a>
+
+    {{ include('screening/_delete_form.html.twig') }}
+{% endblock %}

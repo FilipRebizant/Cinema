@@ -32,9 +32,12 @@ class Reservation
     private $reservation_number;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Screening", inversedBy="reservations")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $screening_id;
+    private $screeningId;
+
+    
 
     public function getId()
     {
@@ -77,16 +80,18 @@ class Reservation
         return $this;
     }
 
-    public function getScreeningId(): ?int
+    public function getScreening(): ?Screening
     {
-        return $this->screening_id;
+        return $this->screening;
     }
 
-    public function setScreeningId(int $screening_id): self
+    public function setScreening(?Screening $screening): self
     {
-        $this->screening_id = $screening_id;
+        $this->screening = $screening;
 
         return $this;
     }
+
+    
 
 }

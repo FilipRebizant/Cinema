@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -17,26 +19,46 @@ class Hall
     private $id;
 
     /**
-     * @ORM\Column(type="smallint", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $number_of_seats_v;
 
     /**
-     * @ORM\Column(type="smallint", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $number_of_seats_h;
 
     /**
-     * @ORM\Column(type="smallint")
+     * @ORM\Column(type="integer")
      */
     private $hall_number;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Screening", mappedBy="hall_id", orphanRemoval=true)
+     */
+    private $screenings;
+
+    
+
+    public function __construct()
+    {
+        $this->screenings = new ArrayCollection();
+    }
 
     public function getId()
     {
         return $this->id;
     }
 
-    public function getNumberOfSeatsV(): ?int
+    /**
+     * @return Collection|Screening[]
+     */
+    public function getScreenings(): Collection
+    {
+        return $this->screenings;
+    }
+
+    public function getnumber_of_seats_v(): ?int
     {
         return $this->number_of_seats_v;
     }
@@ -48,7 +70,7 @@ class Hall
         return $this;
     }
 
-    public function getNumberOfSeatsH(): ?int
+    public function getnumber_of_seats_h(): ?int
     {
         return $this->number_of_seats_h;
     }
@@ -60,7 +82,7 @@ class Hall
         return $this;
     }
 
-    public function getHallNumber(): ?int
+    public function gethall_number(): ?int
     {
         return $this->hall_number;
     }
@@ -72,9 +94,27 @@ class Hall
         return $this;
     }
 
-    public function getSeatsNumber()
+    public function addScreening(Screening $screening): self
     {
-        return $this->number_of_seats_h * $this->number_of_seats_v;
+        if (!$this->screenings->contains($screening)) {
+            $this->screenings[] = $screening;
+            $screening->setHallId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScreening(Screening $screening): self
+    {
+        if ($this->screenings->contains($screening)) {
+            $this->screenings->removeElement($screening);
+            // set the owning side to null (unless already changed)
+            if ($screening->getHallId() === $this) {
+                $screening->setHallId(null);
+            }
+        }
+
+        return $this;
     }
 
 }

@@ -21,16 +21,31 @@ class Movie
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private $title;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Screening", mappedBy="movie_id")
+     * @ORM\Column(type="integer")
      */
-    private $screening;
+    private $age;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $url;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Screening", mappedBy="movies")
+     */
+    private $screenings;
 
     public function __construct()
     {
-        $this->screening = new ArrayCollection();
+        $this->screenings = new ArrayCollection();
     }
 
     public function getId()
@@ -38,14 +53,50 @@ class Movie
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getTitle(): ?string
     {
-        return $this->name;
+        return $this->title;
     }
 
-    public function setName(string $name): self
+    public function setTitle(string $title): self
     {
-        $this->name = $name;
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getAge(): ?int
+    {
+        return $this->age;
+    }
+
+    public function setAge(int $age): self
+    {
+        $this->age = $age;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(?string $url): self
+    {
+        $this->url = $url;
 
         return $this;
     }
@@ -53,16 +104,16 @@ class Movie
     /**
      * @return Collection|Screening[]
      */
-    public function getScreening(): Collection
+    public function getScreenings(): Collection
     {
-        return $this->screening;
+        return $this->screenings;
     }
 
     public function addScreening(Screening $screening): self
     {
-        if (!$this->screening->contains($screening)) {
-            $this->screening[] = $screening;
-            $screening->setMovieId($this);
+        if (!$this->screenings->contains($screening)) {
+            $this->screenings[] = $screening;
+            $screening->addMovie($this);
         }
 
         return $this;
@@ -70,12 +121,9 @@ class Movie
 
     public function removeScreening(Screening $screening): self
     {
-        if ($this->screening->contains($screening)) {
-            $this->screening->removeElement($screening);
-            // set the owning side to null (unless already changed)
-            if ($screening->getMovieId() === $this) {
-                $screening->setMovieId(null);
-            }
+        if ($this->screenings->contains($screening)) {
+            $this->screenings->removeElement($screening);
+            $screening->removeMovie($this);
         }
 
         return $this;
