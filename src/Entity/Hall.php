@@ -58,7 +58,7 @@ class Hall
         return $this->screenings;
     }
 
-    public function getnumber_of_seats_v(): ?int
+    public function getNumberOfSeatsV(): ?int
     {
         return $this->number_of_seats_v;
     }
@@ -70,7 +70,7 @@ class Hall
         return $this;
     }
 
-    public function getnumber_of_seats_h(): ?int
+    public function getNumberOfSeatsH(): ?int
     {
         return $this->number_of_seats_h;
     }
@@ -82,7 +82,7 @@ class Hall
         return $this;
     }
 
-    public function gethall_number(): ?int
+    public function getHallNumber(): ?int
     {
         return $this->hall_number;
     }

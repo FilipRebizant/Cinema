@@ -19,9 +19,9 @@
         {% for hall in halls %}
             <tr>
                 <td>{{ hall.id }}</td>
-                <td>{{ hall.number_of_seats_v }}</td>
-                <td>{{ hall.number_of_seats_h }}</td>
-                <td>{{ hall.hall_number }}</td>
+                <td>{{ hall.getNumberOfSeatsV }}</td>
+                <td>{{ hall.getNumberOfSeatsH }}</td>
+                <td>{{ hall.getHallNumber }}</td>
                 <td>
                     <a href="{{ path('hall_show', {'id': hall.id}) }}">show</a>
                     <a href="{{ path('hall_edit', {'id': hall.id}) }}">edit</a>
