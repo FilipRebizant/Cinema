@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Screening{% endblock %}
+
+{% block body %}
+    <h1>Create new Screening</h1>
+
+    {{ include('screening/_form.html.twig') }}
+
+    <a href="{{ path('screening_index') }}">back to list</a>
+{% endblock %}

@@ -1,20 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lista filmów{% endblock %}
+{% block title %}Screening{% endblock %}
 
 {% block body %}
-    <div class="alert alert-success hide"></div>
-    <div id="seats_container" class="seats__container"></div>
+    <h1>Screening</h1>
 
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ screening.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ screening.date ? screening.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Hour</th>
+                <td>{{ screening.hour }}</td>
+            </tr>
+        </tbody>
+    </table>
 
-    <form id="reservation__form" action="{{ path('storeReservation') }}" method="post">
+    <a href="{{ path('screening_index') }}">back to list</a>
 
-        <button class="btn btn-primary">Rezerwuj</button>
+    <a href="{{ path('screening_edit', {'id': screening.id}) }}">edit</a>
 
-    </form>
-
-{% endblock %}
-
-{% block javascripts %}
-    <script src="{{ asset('build/js/seats.js') }}"></script>
+    {{ include('screening/_delete_form.html.twig') }}
 {% endblock %}
