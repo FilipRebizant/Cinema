@@ -23,11 +23,6 @@ class Screening
      */
     private $date;
 
-    /**
-     * @ORM\Column(type="time_immutable")
-     */
-    private $hour;
-
    
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="screening")

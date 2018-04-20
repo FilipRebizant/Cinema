@@ -13,11 +13,11 @@
             </tr>
             <tr>
                 <th>Date</th>
-                <td>{{ screening.date ? screening.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ screening.date ? screening.date|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
                 <th>Hour</th>
-                <td>{{ screening.hour }}</td>
+                <td>{{ screening.hour ? screening.date|date('H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>

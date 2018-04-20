@@ -3,17 +3,16 @@
 {% block title %}Movie index{% endblock %}
 
 {% block body %}
-    <h1>Movie index</h1>
+    <h1>Lista filmów</h1>
 
     <table class="table">
-        <thead>
-            <tr>
+        <thead class="mdb-color darken-3">
+            <tr class="text-white">
                 <th>Id</th>
-                <th>Title</th>
-                <th>Age</th>
-                <th>Description</th>
-                <th>Url</th>
-                <th>actions</th>
+                <th>Tytuł</th>
+                <th>Wymagany wiek</th>
+                <th>Krótki opis</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -23,19 +22,18 @@
                 <td>{{ movie.title }}</td>
                 <td>{{ movie.age }}</td>
                 <td>{{ movie.description }}</td>
-                <td>{{ movie.url }}</td>
                 <td>
-                    <a href="{{ path('movie_show', {'id': movie.id}) }}">show</a>
-                    <a href="{{ path('movie_edit', {'id': movie.id}) }}">edit</a>
+                    <a class="btn btn-dark" href="{{ path('movie_show', {'id': movie.id}) }}">Pokaż</a>
+                    <a class="btn btn-dark" href="{{ path('movie_edit', {'id': movie.id}) }}">Edytuj</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">Nie znaleziono filmów</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('movie_new') }}">Create new</a>
+    <a class="btn btn-primary" href="{{ path('movie_new') }}">Dodaj nowy</a>
 {% endblock %}

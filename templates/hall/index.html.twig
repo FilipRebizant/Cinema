@@ -6,34 +6,34 @@
     <h1>Hall index</h1>
 
     <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Number_of_seats_v</th>
-                <th>Number_of_seats_h</th>
-                <th>Hall_number</th>
-                <th>actions</th>
-            </tr>
+        <thead class="mdb-color darken-3">
+        <tr class="text-white">
+            <th>Id</th>
+            <th>Numer sali</th>
+            <th>Ilość rzędów</th>
+            <th>Ilość miejsc</th>
+            <th></th>
+        </tr>
         </thead>
         <tbody>
         {% for hall in halls %}
             <tr>
                 <td>{{ hall.id }}</td>
+                <td>{{ hall.getHallNumber }}</td>
                 <td>{{ hall.getNumberOfSeatsV }}</td>
                 <td>{{ hall.getNumberOfSeatsH }}</td>
-                <td>{{ hall.getHallNumber }}</td>
                 <td>
-                    <a href="{{ path('hall_show', {'id': hall.id}) }}">show</a>
-                    <a href="{{ path('hall_edit', {'id': hall.id}) }}">edit</a>
+                    <a class="btn btn-dark" href="{{ path('hall_show', {'id': hall.id}) }}">Pokaż</a>
+                    <a class="btn btn-dark" href="{{ path('hall_edit', {'id': hall.id}) }}">Edytuj</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Brak sal do wyświetlenia</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('hall_new') }}">Create new</a>
+    <a class="btn btn-primary" href="{{ path('hall_new') }}">Dodaj sale</a>
 {% endblock %}
