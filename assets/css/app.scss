@@ -1,6 +1,7 @@
 @import 'bootstrap.min.css';
 @import 'mdb.min.css';
 @import 'seats.scss';
+@import 'home_page.scss';
 
 body{
   //background: #f00;
@@ -8,4 +9,9 @@ body{
 
 .hide {
   display: none;
+}
+
+
+section{
+  margin: 1.5em 0;
 }
