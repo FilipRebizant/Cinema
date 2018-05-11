@@ -144,4 +144,9 @@ class Movie
         return $this->category;
     }
 
+    public function getShortDescription()
+    {
+        return $this->short_description;
+    }
+
 }

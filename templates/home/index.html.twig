@@ -8,103 +8,37 @@
         <h2>Nowości</h2>
         <div class="row">
 
+            {% for newMovie in newMovies %}
+                <div class="col-md-4">
+                    <!-- Card -->
+                    <div class="card">
 
-            <div class="col-md-4">
-                <!-- Card -->
-                <div class="card">
+                        <!-- Card image -->
+                        <div class="view overlay">
+                            <img class="card-img-top"
+                                 src="{{ newMovie.url }}"
+                                 alt="Card image cap">
+                            <a href="{{ path('movie_show', {'id': newMovie.id}) }}">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
 
-                    <!-- Card image -->
-                    <div class="view overlay">
-                        <img class="card-img-top"
-                             src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg"
-                             alt="Card image cap">
-                        <a href="#!">
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
+                        <!-- Card content -->
+                        <div class="card-body">
+
+                            <!-- Title -->
+                            <h4 class="card-title">{{ newMovie.title }}</h4>
+                            <!-- Text -->
+                            <p class="card-text">{{ newMovie.getShortDescription() }}</p>
+                            <!-- Button -->
+                            <a href="{{ path('movie_show', {'id': newMovie.id}) }}" class="btn btn-primary">Czytaj więcej</a>
+
+                        </div>
+
                     </div>
-
-                    <!-- Card content -->
-                    <div class="card-body">
-
-                        <!-- Title -->
-                        <h4 class="card-title">Card title</h4>
-                        <!-- Text -->
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's content.</p>
-                        <!-- Button -->
-                        <a href="#" class="btn btn-primary">Button</a>
-
-                    </div>
-
+                    <!-- Card -->
                 </div>
-                <!-- Card -->
-
-            </div>
-            <div class="col-md-4">
-                <!-- Card -->
-                <div class="card">
-
-                    <!-- Card image -->
-                    <div class="view overlay">
-                        <img class="card-img-top"
-                             src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg"
-                             alt="Card image cap">
-                        <a href="#!">
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
-
-                    <!-- Card content -->
-                    <div class="card-body">
-
-                        <!-- Title -->
-                        <h4 class="card-title">Card title</h4>
-                        <!-- Text -->
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's content.</p>
-                        <!-- Button -->
-                        <a href="#" class="btn btn-primary">Button</a>
-
-                    </div>
-
-                </div>
-                <!-- Card -->
-
-            </div>
-            <div class="col-md-4">
-                <!-- Card -->
-                <div class="card">
-
-                    <!-- Card image -->
-                    <div class="view overlay">
-                        <img class="card-img-top"
-                             src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg"
-                             alt="Card image cap">
-                        <a href="#!">
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
-
-                    <!-- Card content -->
-                    <div class="card-body">
-
-                        <!-- Title -->
-                        <h4 class="card-title">Card title</h4>
-                        <!-- Text -->
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's content.</p>
-                        <!-- Button -->
-                        <a href="#" class="btn btn-primary">Button</a>
-
-                    </div>
-
-                </div>
-                <!-- Card -->
-
-            </div>
+            {% endfor %}
         </div>
     </section>
 
@@ -135,14 +69,13 @@
                 <!-- Grid column -->
                 <div class="col-lg-7 col-xl-8">
 
-                    <!-- Post title -->
                     <h3 class="font-weight-bold mb-3"><strong>{{ movie.title }}</strong></h3>
-                    <!-- Excerpt -->
-                    <p class="dark-grey-text">{{ movie.description }}</p>
-                    <!-- Post data -->
+
+                    <p class="dark-grey-text">{{ movie.getShortDescription() }}</p>
+
                     <p>Godziny seansów</p>
-                    <!-- Read more button -->
-                    <a href="#" class="btn btn-elegant">18:00</a>
+
+                    <a href="{{ path('reservation_show', {'id': movie.id}) }}" class="btn btn-elegant">18:00</a>
                     <a href="#" class="btn btn-elegant">20:30</a>
 
                 </div>
@@ -155,11 +88,7 @@
 
         {% endfor %}
 
-
     </section>
     <!-- Section-->
-
-
-
 
 {% endblock %}

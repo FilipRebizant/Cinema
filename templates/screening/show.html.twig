@@ -1,30 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Screening{% endblock %}
+{% block title %}Lista filmów{% endblock %}
 
 {% block body %}
-    <h1>Screening</h1>
+    <div class="alert alert-success hide"></div>
+    <div id="seats_container" class="seats__container"></div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ screening.id }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ screening.date ? screening.date|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Hour</th>
-                <td>{{ screening.hour ? screening.date|date('H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('screening_index') }}">back to list</a>
+    <form id="reservation__form" action="{{ path('storeReservation') }}" method="post">
 
-    <a href="{{ path('screening_edit', {'id': screening.id}) }}">edit</a>
+        <button class="btn btn-primary">Rezerwuj</button>
 
-    {{ include('screening/_delete_form.html.twig') }}
+    </form>
+
 {% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('build/js/seats.js') }}"></script>
+{% endblock %}
+
+
+{#{% extends 'base.html.twig' %}#}
+
+{#{% block title %}Screening{% endblock %}#}
+
+{#{% block body %}#}
+    {##}
+    {##}
+    {##}
+    {##}
+    {##}
+    {#<h1>Screening</h1>#}
+
+    {#<table class="table">#}
+        {#<tbody>#}
+            {#<tr>#}
+                {#<th>Id</th>#}
+                {#<td>{{ screening.id }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Date</th>#}
+                {#<td>{{ screening.date ? screening.date|date('Y-m-d') : '' }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Hour</th>#}
+                {#<td>{{ screening.hour ? screening.date|date('H:i:s') : '' }}</td>#}
+            {#</tr>#}
+        {#</tbody>#}
+    {#</table>#}
+
+    {#<a href="{{ path('screening_index') }}">back to list</a>#}
+
+    {#<a href="{{ path('screening_edit', {'id': screening.id}) }}">edit</a>#}
+
+    {#{{ include('screening/_delete_form.html.twig') }}#}
+{#{% endblock %}#}

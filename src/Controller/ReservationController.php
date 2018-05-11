@@ -24,7 +24,7 @@ class ReservationController extends Controller
     }
 
     /**
-     * @Route("/new", name="reservation_new", methods="GET|POST")
+     * @Route("/new", name="reservation_new", methods="POST")
      */
     public function new(Request $request): Response
     {

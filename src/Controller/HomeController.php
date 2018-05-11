@@ -18,12 +18,16 @@ class HomeController extends AbstractController
     public function index()
     {
 
-        $movies = $this->getDoctrine()->getRepository(Movie::class)->findAll();
+        $moviesRepository = $this->getDoctrine()->getRepository(Movie::class);
         $screenings = $this->getDoctrine()->getRepository(Screening::class)->findAll();
+        $movies = $moviesRepository->findAll();
+        $newMovies = $moviesRepository->findBy(array(), array('id' => 'DESC'), 3);
+
 
         return $this->render('home/index.html.twig', [
             'screenings' => $screenings,
-            'movies' => $movies
+            'movies' => $movies,
+            'newMovies' => $newMovies
         ]);
     }
 }
