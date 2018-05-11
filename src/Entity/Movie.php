@@ -24,6 +24,11 @@ class Movie
     private $title;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $category;
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $age;
