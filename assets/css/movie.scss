@@ -1,0 +1,13 @@
+.movie{
+  margin:0;
+  &__hero{
+    &__container{
+      //display: flex;
+      background-attachment:fixed;
+    }
+  }
+  .view {
+    height: 70vh;
+  }
+}
+

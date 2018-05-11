@@ -34,6 +34,11 @@ class Movie
     private $age;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $short_description;
+
+    /**
      * @ORM\Column(type="text")
      */
     private $description;
@@ -133,4 +138,10 @@ class Movie
 
         return $this;
     }
+
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
 }

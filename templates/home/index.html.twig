@@ -124,7 +124,7 @@
                     <!-- Featured image -->
                     <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
                         <img class="img-fluid" src="{{ movie.url }}" alt="Sample image">
-                        <a>
+                        <a href="{{ path('movie_show', {'id': movie.id}) }}">
                             <div class="mask rgba-white-slight"></div>
                         </a>
                     </div>
