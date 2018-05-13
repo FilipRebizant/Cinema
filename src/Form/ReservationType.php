@@ -14,8 +14,7 @@ class ReservationType extends AbstractType
         $builder
             ->add('seat')
             ->add('row')
-            ->add('reservation_number')
-            ->add('screeningId')
+            ->add('screening')
         ;
     }
 

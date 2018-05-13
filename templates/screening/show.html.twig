@@ -12,12 +12,14 @@
                 <td>{{ screening.id }}</td>
             </tr>
             <tr>
-                <th>Date</th>
-                <td>{{ screening.date ? screening.date|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Start Date</th>
+                <td>{{ screening.startDate ? screening.startDate|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
+                 
+                
             <tr>
-                <th>Hour</th>
-                <td>{{ screening.hour }}</td>
+                <th>End Date</th>
+                <td>{{ screening.endDate ? screening.endDate|date('Y-m-d H:i:s') : ''}}</td>
             </tr>
         </tbody>
     </table>

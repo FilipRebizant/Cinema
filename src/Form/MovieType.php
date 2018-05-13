@@ -16,7 +16,6 @@ class MovieType extends AbstractType
             ->add('age')
             ->add('description')
             ->add('url')
-            ->add('screenings')
         ;
     }
 

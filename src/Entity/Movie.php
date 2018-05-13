@@ -34,7 +34,7 @@ class Movie
     private $description;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $url;
 
@@ -128,4 +128,11 @@ class Movie
 
         return $this;
     }
+    
+    public function __toString()
+    {
+        return $this->title;
+    }
+    
+    
 }

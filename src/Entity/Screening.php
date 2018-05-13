@@ -21,12 +21,12 @@ class Screening
     /**
      * @ORM\Column(type="datetime")
      */
-    private $date;
+    private $start_date;
 
     /**
-     * @ORM\Column(type="time_immutable")
+     * @ORM\Column(type="datetime")
      */
-    private $hour;
+    private $end_date;
 
    
     /**
@@ -40,16 +40,22 @@ class Screening
     private $movies;
 
     
+     /**
+     * @ORM\Column(type="integer")
+     */
+    private $price;
+    
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Hall", inversedBy="screenings")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $hall_id;
+    private $hall;
 
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
         $this->movies = new ArrayCollection();
+//        $this->hall = new ArrayCollection();
     }
 
     public function getId()
@@ -57,26 +63,38 @@ class Screening
         return $this->id;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getStartDate(): ?\DateTimeInterface
     {
-        return $this->date;
+        return $this->start_date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setStartDate(\DateTimeInterface $startDate): self
     {
-        $this->date = $date;
+        $this->start_date = $startDate;
+
+        return $this;
+    }
+    
+    public function getPrice(): ? int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }
 
-    public function getHour(): ?\DateTimeImmutable
+    public function getEndDate(): ?\DateTimeInterface
     {
-        return $this->hour;
+        return $this->end_date;
     }
 
-    public function setHour(\DateTimeImmutable $hour): self
+    public function setEndDate(\DateTimeInterface $endDate): self
     {
-        $this->hour = $hour;
+        $this->end_date = $endDate;
 
         return $this;
     }
@@ -136,21 +154,25 @@ class Screening
         if ($this->movies->contains($movie)) {
             $this->movies->removeElement($movie);
         }
-
         return $this;
     }
 
-    public function getHallId(): ?Hall
+    public function getHall(): ? Hall
     {
-        return $this->hall_id;
+        return $this->hall;
     }
-
-    public function setHallId(?Hall $hall_id): self
-    {
-        $this->hall_id = $hall_id;
-
-        return $this;
-    }
-
     
+    
+
+    public function setHall(?Hall $hall): self
+    {
+        $this->hall = $hall;
+
+        return $this;
+    }
+    
+    public function __toString()
+    {
+        return (string) $this->id;
+    }
 }

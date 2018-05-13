@@ -39,3 +39,6 @@ showHall:
     controller: App\Controller\HallController::show
     defaults:
       template: 'halls/hall.html.twig'
+
+logout:
+    path: /logout

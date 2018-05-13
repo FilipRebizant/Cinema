@@ -29,7 +29,7 @@ class Hall
     private $number_of_seats_h;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $hall_number;
 
@@ -58,7 +58,7 @@ class Hall
         return $this->screenings;
     }
 
-    public function getnumber_of_seats_v(): ?int
+    public function getNumberOfSeatsV(): ?int
     {
         return $this->number_of_seats_v;
     }
@@ -70,7 +70,7 @@ class Hall
         return $this;
     }
 
-    public function getnumber_of_seats_h(): ?int
+    public function getNumberOfSeatsH(): ?int
     {
         return $this->number_of_seats_h;
     }
@@ -82,7 +82,7 @@ class Hall
         return $this;
     }
 
-    public function gethall_number(): ?int
+    public function getHallNumber(): ?int
     {
         return $this->hall_number;
     }
@@ -117,4 +117,8 @@ class Hall
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->hall_number;
+    }
 }
