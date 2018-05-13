@@ -3,6 +3,7 @@
 {% block title %}Lista filmów{% endblock %}
 
 {% block body %}
+
     <div class="alert alert-success hide"></div>
     <div id="seats_container" class="seats__container"></div>
 
@@ -55,3 +56,32 @@
 
     {#{{ include('screening/_delete_form.html.twig') }}#}
 {#{% endblock %}#}
+
+    <h1>Screening</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ screening.id }}</td>
+            </tr>
+            <tr>
+                <th>Start Date</th>
+                <td>{{ screening.startDate ? screening.startDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+                 
+                
+            <tr>
+                <th>End Date</th>
+                <td>{{ screening.endDate ? screening.endDate|date('Y-m-d H:i:s') : ''}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('screening_index') }}">back to list</a>
+
+    <a href="{{ path('screening_edit', {'id': screening.id}) }}">edit</a>
+
+    {{ include('screening/_delete_form.html.twig') }}
+{% endblock %}
+

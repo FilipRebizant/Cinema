@@ -29,7 +29,7 @@ class Hall
     private $number_of_seats_h;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $hall_number;
 
@@ -117,4 +117,8 @@ class Hall
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->hall_number;
+    }
 }

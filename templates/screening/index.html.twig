@@ -9,8 +9,9 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Date</th>
-                <th>Hour</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Price</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,8 +19,14 @@
         {% for screening in screenings %}
             <tr>
                 <td>{{ screening.id }}</td>
-                <td>{{ screening.date ? screening.date|date('Y-m-d') : '' }}</td>
-                <td>{{ screening.date ? screening.date|date('H:i:s') : '' }}</td>
+
+                {#<td>{{ screening.date ? screening.date|date('Y-m-d') : '' }}</td>#}
+                {#<td>{{ screening.date ? screening.date|date('H:i:s') : '' }}</td>#}
+
+                <td>{{ screening.startDate ? screening.startDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ screening.endDate ? screening.endDate|date('Y-m-d H:i:s') : ''}}</td>
+                <td>{{ screening.price}}</td>
+
                 <td>
                     <a href="{{ path('screening_show', {'id': screening.id}) }}">show</a>
                     <a href="{{ path('screening_edit', {'id': screening.id}) }}">edit</a>

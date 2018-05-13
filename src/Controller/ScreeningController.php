@@ -30,10 +30,12 @@ class ScreeningController extends Controller
     {
        
         $screening = new Screening();
+        
         $form = $this->createForm(ScreeningType::class, $screening);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $em = $this->getDoctrine()->getManager();
             $em->persist($screening);
             $em->flush();

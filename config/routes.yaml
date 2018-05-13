@@ -3,6 +3,7 @@ index:
     controller: App\Controller\HomeController::index
     defaults:
       template: 'home_page.html.twig'
+<<<<<<< HEAD
 #
 #movies:
 #    path: /movies
@@ -39,3 +40,44 @@ index:
 #    controller: App\Controller\HallController::show
 #    defaults:
 #      template: 'halls/hall.html.twig'
+=======
+
+movies:
+    path: /movies
+    controller: App\Controller\MoviesController::index
+    defaults:
+      template: 'movies/index.html.twig'
+
+showMovie:
+    path: /movie/{id}
+    controller: App\Controller\MoviesController::show
+    defaults:
+      template: 'movies/index.html.twig'
+
+addMovie:
+    path: /addMovie
+    controller: App\Controller\MoviesController::create
+    defaults:
+      template: 'movies/addMovie.html.twig'
+
+storeMovie:
+    path: /storeMovie
+    controller: App\Controller\MoviesController::store
+    defaults:
+      template: 'movies/addMovie.html.twig'
+
+halls:
+    path: /halls
+    controller: App\Controller\HallController::index
+    defaults:
+      template: 'home_page.html.twig'
+
+showHall:
+    path: /hall/{id}
+    controller: App\Controller\HallController::show
+    defaults:
+      template: 'halls/hall.html.twig'
+
+logout:
+    path: /logout
+>>>>>>> ba34d6a59f3fa1b629e3859117f870ceccf2a1cd
