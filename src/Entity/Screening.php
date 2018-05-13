@@ -23,12 +23,13 @@ class Screening
      */
     private $start_date;
 
+
     /**
      * @ORM\Column(type="datetime")
      */
     private $end_date;
 
-   
+
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="screening")
      */

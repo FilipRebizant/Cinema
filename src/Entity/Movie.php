@@ -24,9 +24,16 @@ class Movie
     private $title;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $category;
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $age;
+
+    
 
     /**
      * @ORM\Column(type="text")
@@ -128,11 +135,25 @@ class Movie
 
         return $this;
     }
+
     
     public function __toString()
     {
         return $this->title;
     }
     
+
+
+    public function getCategory() : ?string
+    {
+        return $this->category;
+    }
+    
+    public function setCategory($category) : self
+    {
+        $this->category = $category;
+        return $this;
+    }
+
     
 }

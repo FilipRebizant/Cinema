@@ -24,11 +24,12 @@ class ReservationController extends Controller
     }
 
     /**
-     * @Route("/new", name="reservation_new", methods="GET|POST")
+     * @Route("/new", name="reservation_new", methods="POST")
      */
     public function new(Request $request): Response
     {
         $reservation = new Reservation();
+        
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 

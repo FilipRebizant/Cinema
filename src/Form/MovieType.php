@@ -12,10 +12,11 @@ class MovieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('age')
-            ->add('description')
-            ->add('url')
+            ->add('title', null , array( 'attr' => array('class' => 'form-control')))
+            ->add('age', null , array( 'attr' => array('class' => 'form-control')))
+            ->add('description', null , array( 'attr' => array('class' => 'form-control')))
+            ->add('category', null , array( 'attr' => array('class' => 'form-control')))
+            ->add('url', null , array( 'attr' => array('class' => 'form-control')))
         ;
     }
 

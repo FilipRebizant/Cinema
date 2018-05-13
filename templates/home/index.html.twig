@@ -3,18 +3,92 @@
 {% block title %}Home page{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <section class="new_movies">
+        <h2>Nowości</h2>
+        <div class="row">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>templates/home/index.html.twig</code></li>
-    </ul>
-</div>
+            {% for newMovie in newMovies %}
+                <div class="col-md-4">
+                    <!-- Card -->
+                    <div class="card">
+
+                        <!-- Card image -->
+                        <div class="view overlay">
+                            <img class="card-img-top"
+                                 src="{{ newMovie.url }}"
+                                 alt="Card image cap">
+                            <a href="{{ path('movie_show', {'id': newMovie.id}) }}">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+
+                        <!-- Card content -->
+                        <div class="card-body">
+
+                            <!-- Title -->
+                            <h4 class="card-title">{{ newMovie.title }}</h4>
+                            <!-- Text -->
+                            <p class="card-text">{{ newMovie.description|length > 100 ? newMovie.description|slice(0, 100) ~ '...' : newMovie.description }}</p>
+                            <!-- Button -->
+                            <a href="{{ path('movie_show', {'id': newMovie.id}) }}" class="btn btn-primary">Czytaj więcej</a>
+
+                        </div>
+
+                    </div>
+                    <!-- Card -->
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Section -->
+    <section class="screening_schedule">
+
+        <!-- Section heading -->
+        <h2 class="h1-responsive font-weight-bold text-center my-5">Repertuar</h2>
+
+        {% for movie in movies %}
+            <!-- Grid row -->
+            <div class="row">
+
+                <!-- Grid column -->
+                <div class="col-lg-5 col-xl-4">
+
+                    <!-- Featured image -->
+                    <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
+                        <img class="img-fluid" src="{{ movie.url }}" alt="Sample image">
+                        <a href="{{ path('movie_show', {'id': movie.id}) }}">
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-lg-7 col-xl-8">
+
+                    <h3 class="font-weight-bold mb-3"><strong>{{ movie.title }}</strong></h3>
+
+                    <p class="dark-grey-text">{{ movie.description}}</p>
+
+                    <p>Godziny seansów</p>
+
+                    <a href="{{ path('reservation_show', {'id': movie.id}) }}" class="btn btn-elegant">18:00</a>
+                    <a href="#" class="btn btn-elegant">20:30</a>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+
+            <hr class="my-5">
+
+        {% endfor %}
+
+    </section>
+    <!-- Section-->
+
 {% endblock %}

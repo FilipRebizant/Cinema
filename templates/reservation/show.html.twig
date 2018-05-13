@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reservation{% endblock %}
+{% block title %}Lista filmów{% endblock %}
 
 {% block body %}
     <h1>Reservation</h1>
@@ -13,16 +13,13 @@
             </tr>
             <tr>
                 <th>Seat</th>
-                <td>{{ reservation.seat }}</td>
+                <td>
+                    {% for ticket in reservation.tickets %}
+                       <a href="{{ path('ticket_show', {'id': ticket.id}) }}">{{ ticket.id }} </a>
+                    {% endfor %}
+                </td>
             </tr>
-            <tr>
-                <th>Row</th>
-                <td>{{ reservation.row }}</td>
-            </tr>
-            <tr>
-                <th>Reservation_number</th>
-                <td>{{ reservation.reservationNumber }}</td>
-            </tr>
+           
         </tbody>
     </table>
 
@@ -31,4 +28,20 @@
     <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
 
     {{ include('reservation/_delete_form.html.twig') }}
+
+    <div class="alert alert-success hide"></div>
+    <div id="seats_container" class="seats__container"></div>
+
+
+    <form id="reservation__form" action="{{ path('reservation_new') }}" method="post">
+
+        <button class="btn btn-primary">Rezerwuj</button>
+
+    </form>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('build/js/seats.js') }}"></script>
+
 {% endblock %}
