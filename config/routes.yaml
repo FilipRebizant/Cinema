@@ -3,7 +3,7 @@ index:
     controller: App\Controller\HomeController::index
     defaults:
       template: 'home_page.html.twig'
-<<<<<<< HEAD
+
 #
 #movies:
 #    path: /movies
@@ -40,7 +40,7 @@ index:
 #    controller: App\Controller\HallController::show
 #    defaults:
 #      template: 'halls/hall.html.twig'
-=======
+
 
 movies:
     path: /movies
@@ -80,4 +80,4 @@ showHall:
 
 logout:
     path: /logout
->>>>>>> ba34d6a59f3fa1b629e3859117f870ceccf2a1cd
+
