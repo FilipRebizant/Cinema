@@ -43,6 +43,9 @@ showHall:
 
 logout:
     path: /logout
+    
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
 #
 #movies:

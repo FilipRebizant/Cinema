@@ -12,6 +12,10 @@
                 <th>Tytuł</th>
                 <th>Wymagany wiek</th>
                 <th>Krótki opis</th>
+                <th>Czas trwania</th>
+                <th>Kategoria</th>
+                <th>Data Premiery</th>
+                <th>Ocena</th>
                 <th></th>
             </tr>
         </thead>
@@ -21,7 +25,11 @@
                 <td>{{ movie.id }}</td>
                 <td>{{ movie.title }}</td>
                 <td>{{ movie.age }}</td>
-                <td>{{ movie.description }}</td>
+                <td>{{ movie.description|length > 100 ? movie.description|slice(0, 100) ~ '...' : movie.description }}</td>
+                <td>{{ movie.time|date("H:i") }}</td>
+                <td>{{ movie.category }}</td>
+                <td>{{ movie.releaseDate|date("d-m-Y")}}</td>
+                <td>{{ movie.grade }}</td>
                 <td>
                     <a class="btn btn-dark" href="{{ path('movie_show', {'id': movie.id}) }}">Pokaż</a>
                     <a class="btn btn-dark" href="{{ path('movie_edit', {'id': movie.id}) }}">Edytuj</a>
