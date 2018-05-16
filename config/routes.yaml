@@ -4,6 +4,7 @@ index:
     defaults:
       template: 'home_page.html.twig'
 
+
 #
 #movies:
 #    path: /movies
@@ -40,6 +41,7 @@ index:
 #    controller: App\Controller\HallController::show
 #    defaults:
 #      template: 'halls/hall.html.twig'
+
 
 
 movies:
@@ -80,4 +82,45 @@ showHall:
 
 logout:
     path: /logout
+
+    
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+#
+#movies:
+#    path: /movies
+#    controller: App\Controller\MovieController::index
+#    defaults:
+#      template: 'movies/index.html.twig'
+#
+#showMovie:
+#    path: /movie/{id}
+#    controller: App\Controller\MovieController::show
+#    defaults:
+#      template: 'movies/index.html.twig'
+#
+#addMovie:
+#    path: /addMovie
+#    controller: App\Controller\MovieController::create
+#    defaults:
+#      template: 'movies/addMovie.html.twig'
+#
+#storeMovie:
+#    path: /storeMovie
+#    controller: App\Controller\MovieController::store
+#    defaults:
+#      template: 'movies/addMovie.html.twig'
+#
+#halls:
+#    path: /halls
+#    controller: App\Controller\HallController::index
+#    defaults:
+#      template: 'home_page.html.twig'
+#
+#showHall:
+#    path: /hall/{id}
+#    controller: App\Controller\HallController::show
+#    defaults:
+#      template: 'halls/hall.html.twig'
 

@@ -34,11 +34,6 @@ class Movie
     private $age;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $short_description;
-
-    /**
      * @ORM\Column(type="text")
      */
     private $description;
@@ -47,6 +42,21 @@ class Movie
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $url;
+    
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $release_date;
+    
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $grade;
+    
+    /**
+     * @ORM\Column(type="time", nullable=true)
+     */
+    private $time;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Screening", mappedBy="movies")
@@ -139,19 +149,63 @@ class Movie
         return $this;
     }
 
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    public function getShortDescription()
-    {
-        return $this->short_description;
-    }
-
+    
     public function __toString()
     {
         return $this->title;
+    }
+    
+
+
+    public function getCategory() : ?string
+    {
+        return $this->category;
+    }
+    
+    public function setCategory($category) : self
+    {
+        $this->category = $category;
+        return $this;
+    }
+
+    public function getTime(): ?\DateTimeInterface
+    {
+        return $this->time;
+    }
+
+
+
+
+    public function setTime(?\DateTimeInterface $time): self
+    {
+        $this->time = $time;
+
+        return $this;
+    }
+
+
+    public function getReleaseDate(): ?\DateTimeInterface
+    {
+        return $this->release_date;
+    }
+
+    public function setReleaseDate(?\DateTimeInterface $release_date): self
+    {
+        $this->release_date = $release_date;
+
+        return $this;
+    }
+
+    public function getGrade(): ?int
+    {
+        return $this->grade;
+    }
+
+    public function setGrade(?int $grade): self
+    {
+        $this->grade = $grade;
+
+        return $this;
     }
 
 }

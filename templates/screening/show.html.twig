@@ -2,23 +2,24 @@
 
 {% block title %}Lista filmów{% endblock %}
 
-{% block body %}
-
-    <div class="alert alert-success hide"></div>
-    <div id="seats_container" class="seats__container"></div>
+{#{% block body %}#}
 
 
-    <form id="reservation__form" action="{{ path('storeReservation') }}" method="post">
+    {#<div class="alert alert-success hide"></div>#}
+    {#<div id="seats_container" class="seats__container"></div>#}
 
-        <button class="btn btn-primary">Rezerwuj</button>
 
-    </form>
+    {#<form id="reservation__form" action="{{ path('storeReservation') }}" method="post">#}
 
-{% endblock %}
+        {#<button class="btn btn-primary">Rezerwuj</button>#}
 
-{% block javascripts %}
-    <script src="{{ asset('build/js/seats.js') }}"></script>
-{% endblock %}
+    {#</form>#}
+
+{#{% endblock %}#}
+
+{#{% block javascripts %}#}
+    {#<script src="{{ asset('build/js/seats.js') }}"></script>#}
+{#{% endblock %}#}
 
 
 {#{% extends 'base.html.twig' %}#}
@@ -66,14 +67,41 @@
                 <td>{{ screening.id }}</td>
             </tr>
             <tr>
+                <th>Hall</th>
+                <td><a href="{{ path('ticket_show', {'id': screening.hall}) }}">{{screening.hall}}</a></td>
+            </tr>
+            <tr>
                 <th>Start Date</th>
                 <td>{{ screening.startDate ? screening.startDate|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
                  
-                
             <tr>
                 <th>End Date</th>
                 <td>{{ screening.endDate ? screening.endDate|date('Y-m-d H:i:s') : ''}}</td>
+            </tr>
+            <tr>
+                <th>Bilety</th>
+                <td>
+                    {% for reservation in screening.reservations%}
+                        {%for ticket in reservation.tickets%}
+                            <a href="{{ path('ticket_show', {'id': ticket.id}) }}">{{ticket.id}}</a>
+                        {%endfor%}
+                    {%endfor%}
+                    
+                </td>
+            </tr>
+            <tr>
+                <th>Film</th>
+                <td>
+                    {% for movie in screening.movies%}
+                       
+                        <div class="row">
+                            <a href="{{ path('movie_show', {'id': movie.id}) }}">{{movie.title}}</a>
+                        </div>
+                       
+                    {%endfor%}
+                    
+                </td>
             </tr>
         </tbody>
     </table>
@@ -83,5 +111,22 @@
     <a href="{{ path('screening_edit', {'id': screening.id}) }}">edit</a>
 
     {{ include('screening/_delete_form.html.twig') }}
+
+
+    <div class="alert alert-success hide"></div>
+    <div id="seats_container" class="seats__container"></div>
+
+
+    <form id="reservation__form" {#action="{{ path('storeReservation') }}"#} method="post"> 
+
+        <button class="btn btn-primary">Rezerwuj</button>
+
+    </form>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <script src="{{ asset('build/js/seats.js') }}"></script>
 {% endblock %}
 

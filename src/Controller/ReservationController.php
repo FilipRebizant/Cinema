@@ -29,6 +29,7 @@ class ReservationController extends Controller
     public function new(Request $request): Response
     {
         $reservation = new Reservation();
+        
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 

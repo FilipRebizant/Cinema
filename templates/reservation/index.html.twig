@@ -17,18 +17,20 @@
         {% for reservation in reservations %}
             <tr>
 
+
                 <td>{{ reservation.getId()}}</td>
                 <td>{{ reservation.getSeat() }}</td>
                 <td>{{ reservation.getRow() }}</td>
                 <td>{{ reservation.getReservationNumber() }}</td>
 
-                <td>{{ reservation.id }}</td>
+
+                {#<td>{{ reservation.id }}</td>#}
                 <td>
                     {% for ticket in reservation.tickets %}
                        <a href="{{ path('ticket_show', {'id': ticket.id}) }}">{{ ticket.id }} </a>
                     {% endfor %}
                 </td>
-                
+
 
                 <td>
                     <a href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>

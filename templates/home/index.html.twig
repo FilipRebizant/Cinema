@@ -29,7 +29,7 @@
                             <!-- Title -->
                             <h4 class="card-title">{{ newMovie.title }}</h4>
                             <!-- Text -->
-                            <p class="card-text">{{ newMovie.getShortDescription() }}</p>
+                            <p class="card-text">{{ newMovie.description|length > 100 ? newMovie.description|slice(0, 100) ~ '...' : newMovie.description }}</p>
                             <!-- Button -->
                             <a href="{{ path('movie_show', {'id': newMovie.id}) }}" class="btn btn-primary">Czytaj więcej</a>
 
@@ -71,7 +71,7 @@
 
                     <h3 class="font-weight-bold mb-3"><strong>{{ movie.title }}</strong></h3>
 
-                    <p class="dark-grey-text">{{ movie.getShortDescription() }}</p>
+                    <p class="dark-grey-text">{{ movie.description}}</p>
 
                     <p>Godziny seansów</p>
 
