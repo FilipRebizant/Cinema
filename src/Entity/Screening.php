@@ -176,4 +176,10 @@ class Screening
     {
         return (string) $this->id;
     }
+
+//    public function getNumberOfSeats()
+//    {
+//        return $this->hall->getNumberOfSeatsH();
+//    }
+
 }

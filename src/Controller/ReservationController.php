@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Reservation;
+use App\Entity\Screening;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,25 +28,31 @@ class ReservationController extends Controller
     /**
      * @Route("/new", name="reservation_new", methods="POST")
      */
-    public function new(Request $request): Response
+    public function new(Request $request): JsonResponse
     {
-        $reservation = new Reservation();
+        #TODO: ogarnąć requesta
+
+//        $reservation = new Reservation();
         
-        $form = $this->createForm(ReservationType::class, $reservation);
-        $form->handleRequest($request);
+//        $form = $this->createForm(ReservationType::class, $reservation);
+//        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($reservation);
-            $em->flush();
 
-            return $this->redirectToRoute('reservation_index');
-        }
+//        if ($form->isSubmitted() && $form->isValid()) {
+//            $em = $this->getDoctrine()->getManager();
+//            $em->persist($reservation);
+//            $em->flush();
 
-        return $this->render('reservation/new.html.twig', [
-            'reservation' => $reservation,
-            'form' => $form->createView(),
-        ]);
+        return new JsonResponse(['info' => 'Pomyślnie wykonano rezerwację'], 200);
+//            return $this->redirectToRoute('reservation_index');
+//        }
+
+//        return $this->render('reservation/new.html.twig', [
+//            'reservation' => $reservation,
+//            'form' => $form->createView(),
+//        ]);
+
+
     }
 
     /**

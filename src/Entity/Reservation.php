@@ -25,9 +25,14 @@ class Reservation
     private $screening;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Ticket", mappedBy="reservation", orphanRemoval=true)
+     * @ORM\Column(type="integer")
      */
-    private $tickets;
+    private $seat;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $row;
 
     public function __construct()
     {
@@ -89,5 +94,13 @@ class Reservation
         return (string) $this->id;
     }
 
+    public function getSeat()
+    {
+        return $this->seat;
+    }
 
+    public function getRow()
+    {
+        return $this->row;
+    }
 }

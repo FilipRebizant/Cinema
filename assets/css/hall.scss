@@ -1,0 +1,57 @@
+.hall{
+  text-align: center;
+  margin: 3em 0;
+
+  &__hall_number{
+
+  }
+
+  &__screen{
+    display: flex;
+    height: 35px;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    background: #333333;
+    color: #ffffff
+  }
+}
+
+
+
+
+.seats{
+
+  &__container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5em 0;
+  }
+  &__row{
+    display: flex;
+    margin: 0;
+  }
+  &__seat{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #000000;
+    margin: 2px;
+    &:hover{
+      background: $light-blue;
+      border-color: #666666;
+      cursor: pointer;
+    }
+
+    &-active {
+      background: $light-blue;
+      border-color: #666666;
+      cursor: pointer;
+    }
+  }
+}
