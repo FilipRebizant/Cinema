@@ -4,6 +4,8 @@ $(document).ready(function () {
 
         row_number: $('#rows_number').val(),
         seats_number: $('#seats_number').val(),
+        screening_id : $('#screening_id').val(),
+        
         reserved_seats: [],
         // currently_booked_seats: [
         //     {'row': 3, 'seat': 5}
@@ -40,7 +42,7 @@ $(document).ready(function () {
 
             $(document).ajaxComplete(function (data) {
                 var currently_booked_seats = reservations.responseJSON.current_reservations;
-
+                
                 console.log(currently_booked_seats);
                 for (var i = 0; i < row_number; i++) {
                     var row = $('<ul/>', {'class': 'seats__row'});
@@ -74,6 +76,7 @@ $(document).ready(function () {
 
         bookASeat: function (e) {
 
+            
             var $seat = ($(e.target)),
                 row_number = $seat.data('row'),
                 seat_number = $seat.data('seat');
@@ -103,13 +106,14 @@ $(document).ready(function () {
         },
 
         sendData: function (e) {
+            
             e.preventDefault();
             var reserved_seats = this.reserved_seats;
             // console.log(reserved_seats);
             $.ajax({
 
                 url: this.$form.attr('action'),
-                data: {seats: reserved_seats},
+                data: {seats: reserved_seats, screeningId = this.screening_id},
                 type: 'post'
 
 
@@ -138,5 +142,6 @@ $(document).ready(function () {
     };
 
     seats.init();
+    
 
 });

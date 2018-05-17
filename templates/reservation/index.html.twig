@@ -9,7 +9,11 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Tickets</th>
+                <th>FirstName</th>
+                <th>Surname</th>
+                <th>Seat</th>
+                <th>Row</th>
+                <th>ReservationNumber</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,19 +23,11 @@
 
 
                 <td>{{ reservation.getId()}}</td>
+                <td>{{ reservation.firstname }}</td>
+                <td>{{ reservation.surname }}</td>
                 <td>{{ reservation.getSeat() }}</td>
                 <td>{{ reservation.getRow() }}</td>
                 <td>{{ reservation.getReservationNumber() }}</td>
-
-
-                {#<td>{{ reservation.id }}</td>#}
-                <td>
-                    {% for ticket in reservation.tickets %}
-                       <a href="{{ path('ticket_show', {'id': ticket.id}) }}">{{ ticket.id }} </a>
-                    {% endfor %}
-                </td>
-
-
                 <td>
                     <a href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>
                     <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>

@@ -9,7 +9,7 @@
         <input type="hidden" value="{{ screening.getHall().getNumberOfSeatsV() }}" id="rows_number">
         <input type="hidden" value="{{ screening.getHall().getNumberOfSeatsH() }}" id="seats_number">
         <input type="hidden" value="{{ path('reservations_get', {'id': screening.id}) }}" id="reservation_url">
-
+        <input type="hidden" value="{{screening.id}}" id="screening_id">
         <div class="alert alert-success hide"></div>
 
         <h5 class="hall__number">Sala {{ screening.hall }}</h5>
