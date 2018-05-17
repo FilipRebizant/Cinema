@@ -132,7 +132,7 @@ class ScreeningController extends Controller
 //    dump(json_encode($arr));
 //        return Response$reservations;
         return new JsonResponse([
-            'current_reservations' => json_encode($arr)
+            'current_reservations' => ($arr)
         ], 200);
     }
 

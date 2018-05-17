@@ -31,45 +31,44 @@ $(document).ready(function () {
         },
 
         renderSeats: function () {
-            // console.log(this.currently_booked_seats);
+
             var row_number = this.row_number,
                 seats_number = this.seats_number,
                 seats_container = this.$seats__container,
                 reservations = this.getReservations();
 
+
             $(document).ajaxComplete(function (data) {
-                var currently_booked_seats = JSON.parse(reservations.responseJSON);
-                // var currently_booked_seats = $.parseJSON(JSON.stringify(reservations));
-                // console.log(currently_booked_seats);
-                // console.log(row_number);
-                    console.log(currently_booked_seats);
+                var currently_booked_seats = reservations.responseJSON.current_reservations;
+
+                console.log(currently_booked_seats);
                 for (var i = 0; i < row_number; i++) {
                     var row = $('<ul/>', {'class': 'seats__row'});
                     for (var j = 0; j < seats_number; j++) {
 
                         for (var k = 0; k < currently_booked_seats.length; k++) {
 
-                            // if (j == (currently_booked_seats[k].seat - 1) && i == currently_booked_seats[k].row - 1) {
+                            if (j == (currently_booked_seats[k].seat - 1) && i == currently_booked_seats[k].row - 1) {
                                 row.append($('<li/>', {
                                     class: 'seats__seat seats__seat-active disabled',
                                     'data-row': i + 1,
                                     'data-seat': j + 1
                                 }).append(j + 1));
 
-                            // } else {
+                            } else {
                                 row.append($('<li/>', {
                                     class: 'seats__seat',
                                     'data-row': i + 1,
                                     'data-seat': j + 1
                                 }).append(j + 1));
-                            // }
+                            }
                         }
 
                     }
 
                     seats_container.append(row);
                 }
-                console.log('tu');
+
             });
         },
 
@@ -106,7 +105,7 @@ $(document).ready(function () {
         sendData: function (e) {
             e.preventDefault();
             var reserved_seats = this.reserved_seats;
-            console.log(reserved_seats);
+            // console.log(reserved_seats);
             $.ajax({
 
                 url: this.$form.attr('action'),
@@ -124,51 +123,17 @@ $(document).ready(function () {
         },
 
         getReservations: function () {
-            var url = $('#reservation_url').val(),
-                renderSeats = this.renderSeats,
-                tmp = null;
-            //
-            // $.ajax({
-            //     url: url,
-            //     type: 'post'
-            // }).promise().done(function (data) {
-            //     // this.currently_booked_seats = data.current_reservations;
-            //     tmp = data.current_reservations;
-            //     // console.log(tmp);
-            // });
-            // // console.log(tmp);
+            var url = $('#reservation_url').val();
 
             var result = $.ajax({
+                dataType: 'json',
                 url: url,
                 type: 'POST'
             });
 
-            result.done(function (value){
-                // alert('success with result: ' + value);
-                this.currently_booked_seats = value.current_reservations;
-            });
             return result;
-            // $(document).ajaxComplete(function (data) {
-            // //     // console.log(data.result);
-            // //     // this.currently_booked_seats = data.current_reservations;
-            // //     // renderSeats();
-            // //     // console.log(tmp);
-            //     this.currently_booked_seats = tmp;
-            // //     renderSeats();
-            //     return tmp;
-            //     return result;
-            // });
-            // $(document).ajaxComplete(function () {
-            //     renderSeats();
-            // });
-
-
-
-
 
         }
-
-
 
     };
 
