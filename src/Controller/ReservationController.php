@@ -30,6 +30,32 @@ class ReservationController extends Controller
      */
     public function new(Request $request): JsonResponse
     {
+        
+        $screening = $this->getDoctrine()
+                    ->getRepository(Reservation::class)->findOneBy(['reservationNumber' => 'DESC'], [
+                        'reservationNumber' => 'DESC'
+                    ]); // a tu trzeba pisac chyba jakies customowe zapytanie bo inaczej sie nie dobierzesz do ostatniego wsadzonego nr. rezerwacji
+        
+        $screeningId = $request->get('screeningId'); // tego brakuje
+        $seats = $request->get('seats');
+        $screening = $this->getDoctrine()
+                    ->getRepository(Screening::class)
+                    ->find($screeningId);
+        
+        
+
+        foreach($seats as $seat)
+        {
+            $reservation = new Reservation();
+            $reservation->setScreening($screening);
+            $reservation->setSeat($seat['seat']);
+            $reservation->setRow($seat['row']);
+            $reservation->setReservationNumber('TRZEBA WYGRZEBC OSTATNIE WSADZONE ID');
+            
+            $em->persist($reservation);
+            $this->getDoctrine()->getManager()->flush();
+        }
+        die;
         #TODO: ogarnąć requesta
 
         $reservation = new Reservation();

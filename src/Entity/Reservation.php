@@ -23,6 +23,11 @@ class Reservation
      * @ORM\JoinColumn(nullable=false)
      */
     private $screening;
+    
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $reservationNumber;
 
     /**
      * @ORM\Column(type="integer")
@@ -34,10 +39,17 @@ class Reservation
      */
     private $row;
 
-    public function __construct()
-    {
-        $this->tickets = new ArrayCollection();
-    }
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $firstname;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $surname;
+
+    
 
     
     public function getId()
@@ -58,36 +70,6 @@ class Reservation
         return $this;
     }
 
-    /**
-     * @return Collection|Ticket[]
-     */
-    public function getTickets(): Collection
-    {
-        return $this->tickets;
-    }
-
-    public function addTicket(Ticket $ticket): self
-    {
-        if (!$this->tickets->contains($ticket)) {
-            $this->tickets[] = $ticket;
-            $ticket->setReservation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTicket(Ticket $ticket): self
-    {
-        if ($this->tickets->contains($ticket)) {
-            $this->tickets->removeElement($ticket);
-            // set the owning side to null (unless already changed)
-            if ($ticket->getReservation() === $this) {
-                $ticket->setReservation(null);
-            }
-        }
-
-        return $this;
-    }
     
     public function __toString()
     {
@@ -102,5 +84,55 @@ class Reservation
     public function getRow()
     {
         return $this->row;
+    }
+
+    public function getReservationNumber(): ?int
+    {
+        return $this->reservationNumber;
+    }
+
+    public function setReservationNumber(int $reservationNumber): self
+    {
+        $this->reservationNumber = $reservationNumber;
+
+        return $this;
+    }
+
+    public function setSeat(int $seat): self
+    {
+        $this->seat = $seat;
+
+        return $this;
+    }
+
+    public function setRow(int $row): self
+    {
+        $this->row = $row;
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getSurname(): ?string
+    {
+        return $this->surname;
+    }
+
+    public function setSurname(string $surname): self
+    {
+        $this->surname = $surname;
+
+        return $this;
     }
 }
