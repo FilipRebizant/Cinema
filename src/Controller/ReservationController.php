@@ -32,25 +32,15 @@ class ReservationController extends Controller
     {
         #TODO: ogarnąć requesta
 
-//        $reservation = new Reservation();
+        $reservation = new Reservation();
+//        $reservation
         
-//        $form = $this->createForm(ReservationType::class, $reservation);
-//        $form->handleRequest($request);
 
-
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $em = $this->getDoctrine()->getManager();
-//            $em->persist($reservation);
-//            $em->flush();
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($reservation);
+        $em->flush();
 
         return new JsonResponse(['info' => 'Pomyślnie wykonano rezerwację'], 200);
-//            return $this->redirectToRoute('reservation_index');
-//        }
-
-//        return $this->render('reservation/new.html.twig', [
-//            'reservation' => $reservation,
-//            'form' => $form->createView(),
-//        ]);
 
 
     }
@@ -88,7 +78,7 @@ class ReservationController extends Controller
      */
     public function delete(Request $request, Reservation $reservation): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$reservation->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $reservation->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($reservation);
             $em->flush();

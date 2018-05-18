@@ -5,14 +5,9 @@ $(document).ready(function () {
         row_number: $('#rows_number').val(),
         seats_number: $('#seats_number').val(),
         reserved_seats: [],
-        // currently_booked_seats: [
-        //     {'row': 3, 'seat': 5}
-        // ],
-        // currently_booked_seats: this.getReservations,
 
         init: function () {
             this.cacheDom();
-            // this.getReservations();
             this.renderSeats();
             this.bindEvents();
         },
@@ -37,39 +32,37 @@ $(document).ready(function () {
                 seats_container = this.$seats__container,
                 reservations = this.getReservations();
 
-
             $(document).ajaxComplete(function (data) {
                 var currently_booked_seats = reservations.responseJSON.current_reservations;
 
-                console.log(currently_booked_seats);
                 for (var i = 0; i < row_number; i++) {
                     var row = $('<ul/>', {'class': 'seats__row'});
                     for (var j = 0; j < seats_number; j++) {
 
+                        row.append($('<li/>', {
+                            class: 'seats__seat',
+                            'data-row': i + 1,
+                            'data-seat': j + 1
+                        }).append(j + 1));
+
                         for (var k = 0; k < currently_booked_seats.length; k++) {
 
                             if (j == (currently_booked_seats[k].seat - 1) && i == currently_booked_seats[k].row - 1) {
-                                row.append($('<li/>', {
-                                    class: 'seats__seat seats__seat-active disabled',
-                                    'data-row': i + 1,
-                                    'data-seat': j + 1
-                                }).append(j + 1));
-
-                            } else {
-                                row.append($('<li/>', {
-                                    class: 'seats__seat',
-                                    'data-row': i + 1,
-                                    'data-seat': j + 1
-                                }).append(j + 1));
+                                row[0].children[j].classList.add('seats__seat-active', 'disabled');
                             }
+
                         }
 
                     }
-
                     seats_container.append(row);
                 }
 
             });
+
+            $(document).ajaxStop(function () {
+                $(document).unbind('ajaxComplete');
+            });
+
         },
 
         bookASeat: function (e) {
@@ -105,7 +98,7 @@ $(document).ready(function () {
         sendData: function (e) {
             e.preventDefault();
             var reserved_seats = this.reserved_seats;
-            // console.log(reserved_seats);
+
             $.ajax({
 
                 url: this.$form.attr('action'),
@@ -119,6 +112,7 @@ $(document).ready(function () {
                 $('.hide').fadeIn();
 
             });
+            this.reserved_seats = [];
 
         },
 
