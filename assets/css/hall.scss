@@ -1,12 +1,12 @@
-.hall{
+.hall {
   text-align: center;
   margin: 3em 0;
 
-  &__hall_number{
+  &__hall_number {
 
   }
 
-  &__screen{
+  &__screen {
     display: flex;
     height: 35px;
     justify-content: center;
@@ -16,25 +16,51 @@
     background: #333333;
     color: #ffffff
   }
+
+  &__legend {
+    &_list {
+      display: flex;
+      justify-content: center;
+      &__list_item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        span {
+          display: flex;
+          justify-content: center;
+          justify-items: center;
+          width: 25px;
+          height: 25px;
+          border: 1px solid #000000;
+          margin: 0.5em 0.7em;
+        }
+
+        &-booked{
+          background: $light-blue;
+        }
+        &-active{
+          background: $light-green;
+        }
+      }
+    }
+  }
+
 }
 
+.seats {
 
-
-
-.seats{
-
-  &__container{
+  &__container {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     margin: 1.5em 0;
   }
-  &__row{
+  &__row {
     display: flex;
     margin: 0;
   }
-  &__seat{
+  &__seat {
     display: flex;
     justify-content: center;
     justify-items: center;
@@ -42,18 +68,24 @@
     height: 25px;
     border: 1px solid #000000;
     margin: 2px;
-    &:hover{
-      background: $light-blue;
+    &:hover {
       border-color: #666666;
+      background: $light-green;
       cursor: pointer;
       color: #ffffff;
     }
 
     &-active {
-      background: $light-blue;
       border-color: #666666;
       cursor: pointer;
       color: #ffffff;
+      background: $light-green;
+    }
+
+    &-booked {
+      background: $light-blue;
+      color: #ffffff;
+
     }
   }
 }
