@@ -3,11 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/xampp/htdocs/Cinema/templates/bundles/FOSUserBundle/Security/login_content.html.twig</file>
-            <file>file:/E:/xampp/htdocs/Cinema/templates/bundles/FOSUserBundle/Security/login.html.twig</file>
-            <file>file:/E:/xampp/htdocs/Cinema/templates/base.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/reservation/show.html.twig</file>
             <file>file:/E:/xampp/htdocs/Cinema/templates/partials/navbar.html.twig</file>
             <file>file:/E:/xampp/htdocs/Cinema/templates/bundles/FOSUserBundle/layout.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/webpack.config.js</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/bundles/FOSUserBundle/Security/login_content.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/admin/index.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/bundles/FOSUserBundle/Security/login.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/src/Controller/ReservationController.php</file>
+            <file>file:/E:/xampp/htdocs/Cinema/src/Entity/Movie.php</file>
+            <file>file:/E:/xampp/htdocs/Cinema/src/Controller/AdminController.php</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/base.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/src/Entity/Reservation.php</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/reservation/new.html.twig</file>
             <file>file:/E:/xampp/htdocs/Cinema/src/Controller/ScreeningController.php</file>
         </group>
     </open-files>

@@ -22,6 +22,7 @@ class ReservationController extends Controller
      */
     public function index(ReservationRepository $reservationRepository): Response
     {
+         
         return $this->render('reservation/index.html.twig', ['reservations' => $reservationRepository->findAll()]);
     }
 

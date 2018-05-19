@@ -48,8 +48,20 @@ class ReservationRepository extends ServiceEntityRepository
     }
     */
 
-    public function findLastReservationNumber()
+   public function aswe()
+   {
+       die('aswe');
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT p FROM AppBundle:Product p ORDER BY p.name ASC'
+            )
+            ->getResult();
+   }
+
+
+   public function findLastReservationNumber()
     {
+        
         $qb =  $this->createQueryBuilder('r')
             ->orderBy('r.reservation_number', 'DESC')
             ->getQuery();
