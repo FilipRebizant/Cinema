@@ -19,15 +19,23 @@ class HomeController extends AbstractController
     {
 
         $moviesRepository = $this->getDoctrine()->getRepository(Movie::class);
-        $screenings = $this->getDoctrine()->getRepository(Screening::class)->findAll();
+        $screeningRepository = $this->getDoctrine()->getRepository(Screening::class);
+        $screenings = $screeningRepository->findAll();
         $movies = $moviesRepository->findAll();
         $newMovies = $moviesRepository->findBy(array(), array('id' => 'DESC'), 3);
 
+//        $currentScreenings = $screeningRepository->findBy(array(), array('start_date' => 'DESC'), 5);
+
+        $currentScreenings = $screeningRepository->getScreeningSchedule();
+//        dump($currentScreenings);
+//        $currentScreenings = $
+//        die()
 
         return $this->render('home/index.html.twig', [
             'screenings' => $screenings,
             'movies' => $movies,
-            'newMovies' => $newMovies
+            'newMovies' => $newMovies,
+            'currentScreenings'=> $currentScreenings,
         ]);
     }
 }

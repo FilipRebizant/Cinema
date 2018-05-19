@@ -15,7 +15,7 @@
 
         <h5 class="hall__number">Sala {{ screening.hall }}</h5>
 
-        <p> {{ screening.startDate ? screening.startDate|date('Y-m-d') : '' }}</p>
+        <p> {{ screening.startDate ? screening.startDate|date('d.m.Y') : '' }}</p>
         {% for movie in screening.movies %}
 
             <h2 class="hall__movie_title">{{ movie.title }}</h2>

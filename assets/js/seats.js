@@ -5,7 +5,6 @@ $(document).ready(function () {
         row_number: $('#rows_number').val(),
         seats_number: $('#seats_number').val(),
         screening_id: $('#screening_id').val(),
-
         reserved_seats: [],
 
         init: function () {

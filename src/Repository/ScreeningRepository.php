@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Screening;
+use App\Entity\Movie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -47,4 +48,29 @@ class ScreeningRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getScreeningSchedule()
+    {
+        //Działa ale zwraca tylko 1 rekord
+//         return $this->createQueryBuilder('s')
+//             ->select('s')
+//             ->addSelect('DATE_FORMAT(s.start_date, \'%d.%m\') as day')
+//            ->innerJoin('s.movies', 'm')
+//            ->addSelect('m')
+////             ->groupBy('day')
+//            ->getQuery()
+//            ->getResult();
+
+
+        return $this->getEntityManager()
+            ->createQuery("
+                SELECT s.start_date, DATE_FORMAT(s.start_date, '%d.%m') as day, m.title, s.hall
+                FROM App\Entity\Screening s, App\Entity\Movie m
+                WHERE s.id = m.id
+                GROUP BY day
+                
+                ")
+            ->getResult();
+    }
+
 }
