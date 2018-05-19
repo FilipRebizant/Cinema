@@ -31,53 +31,29 @@ class ReservationController extends Controller
     public function new(Request $request): JsonResponse
     {
         
-        $screening = $this->getDoctrine()
-                    ->getRepository(Reservation::class)->findOneBy(['reservationNumber' => 'DESC'], [
-                        'reservationNumber' => 'DESC'
-                    ]); // a tu trzeba pisac chyba jakies customowe zapytanie bo inaczej sie nie dobierzesz do ostatniego wsadzonego nr. rezerwacji
-        
-        $screeningId = $request->get('screeningId'); // tego brakuje
+        $screeningId = $request->get('screeningId');
+        $reseravtion = $this->getDoctrine()
+                    ->getRepository(Reservation::class)->findBy([], ['id'=> 'DESC'], 1); 
+        $reservationNumber = $reseravtion ?  $reseravtion[0]->getReservationNumber() + 1 : 1;
+       
         $seats = $request->get('seats');
         $screening = $this->getDoctrine()
                     ->getRepository(Screening::class)
                     ->find($screeningId);
         
-        
-
         foreach($seats as $seat)
         {
             $reservation = new Reservation();
             $reservation->setScreening($screening);
             $reservation->setSeat($seat['seat']);
             $reservation->setRow($seat['row']);
-            $reservation->setReservationNumber('TRZEBA WYGRZEBC OSTATNIE WSADZONE ID');
+            $reservation->setReservationNumber($reservationNumber);
             
+            $em = $this->getDoctrine()->getManager();
             $em->persist($reservation);
-            $this->getDoctrine()->getManager()->flush();
+            $em->flush();
         }
-        die;
-        #TODO: ogarnąć requesta
-
-//        $reservation = new Reservation();
-        
-//        $form = $this->createForm(ReservationType::class, $reservation);
-//        $form->handleRequest($request);
-
-
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $em = $this->getDoctrine()->getManager();
-//            $em->persist($reservation);
-//            $em->flush();
-
         return new JsonResponse(['info' => 'Pomyślnie wykonano rezerwację'], 200);
-//            return $this->redirectToRoute('reservation_index');
-//        }
-
-//        return $this->render('reservation/new.html.twig', [
-//            'reservation' => $reservation,
-//            'form' => $form->createView(),
-//        ]);
-
 
     }
 
