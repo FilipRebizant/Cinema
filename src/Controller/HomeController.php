@@ -33,34 +33,34 @@ class HomeController extends AbstractController
 //        die;
 
         
-        $currentScreenings = $screeningRepository->getScreeningSchedule();
-        dump($currentScreenings);
-        die;
-        dump(count($currentScreenings[0][0]->getMovies()));
-        die;
-        
-        foreach($screns->getMovies() as $movie)
-        {
-            echo $movie->getId();
-        }
-        die;
-        dump();
-        die;
+//        $currentScreenings = $screeningRepository->getScreeningSchedule();
 //        dump($currentScreenings);
 //        die;
-//        dump($currentScreenings[1]);
+//        dump(count($currentScreenings[0][0]->getMovies()));
 //        die;
-        echo count($currentScreenings[2][0]->getMovies());
-            die;
-        foreach($currentScreenings[1][0]->getMovies() as $movie)
-        {
-            
-            dump($movie);
-            
-        }
-        die;
-        dump($currentScreenings[0][0]->getMovies());
-        die;
+//        
+//        foreach($screns->getMovies() as $movie)
+//        {
+//            echo $movie->getId();
+//        }
+//        die;
+//        dump();
+//        die;
+////        dump($currentScreenings);
+////        die;
+////        dump($currentScreenings[1]);
+////        die;
+//        echo count($currentScreenings[2][0]->getMovies());
+//            die;
+//        foreach($currentScreenings[1][0]->getMovies() as $movie)
+//        {
+//            
+//            dump($movie);
+//            
+//        }
+//        die;
+//        dump($currentScreenings[0][0]->getMovies());
+//        die;
 //        dump($currentScreenings);
 //        $currentScreenings = $
 //        die()
@@ -69,7 +69,7 @@ class HomeController extends AbstractController
             'screenings' => $screenings,
             'movies' => $movies,
             'newMovies' => $newMovies,
-            'currentScreenings'=> $currentScreenings,
+//            'currentScreenings'=> $currentScreenings,
         ]);
     }
 }

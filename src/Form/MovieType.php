@@ -23,7 +23,6 @@ class MovieType extends AbstractType {
                     'choices' => $this->getChoices(),
                     'attr' => array('class' => 'form-control')))
                 ->add('image', FileType::class, array('label' => 'Image', 'attr' => array('class' => 'form-control')))
-                ->add('url', null, array('attr' => array('class' => 'form-control')))
 
         ;
     }
