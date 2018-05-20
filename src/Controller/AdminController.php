@@ -2,9 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Hall;
-use App\Form\HallType;
-use App\Repository\HallRepository;
+use App\Form\PromoteType;
 use App\Repository\FOSUserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,13 +25,29 @@ class AdminController extends Controller
      */
     public function users(FOSUserRepository $FOSUserRepository): Response
     {
-//        $userManager = $this->get('fos_user.user_manager');
-//        $userManager->getDoctrine()->getManager()->
-//        dump();
-//        die;
         return $this->render('admin/users.html.twig',[
             'users' => $FOSUserRepository->findAll()
         ]);
     }
     
+    /**
+     * @Route("/users/promote/{id}", name="admin_user_promote", methods="GET|POST")
+     */
+    public function promote($id, FOSUserRepository $FOSUserRepository, Request $request):Response
+    {
+        $user = $FOSUserRepository->find($id);
+        $form = $this->createForm(PromoteType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('admin_users');
+        }
+        return $this->render('admin/promote.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
+        
+    }
 }
