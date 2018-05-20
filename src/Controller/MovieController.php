@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\FileUploader;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @Route("/movie")
@@ -26,13 +28,19 @@ class MovieController extends Controller
     /**
      * @Route("/new", name="movie_new", methods="GET|POST")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, FileUploader $fileUploader): Response
     {
         $movie = new Movie();
         $form = $this->createForm(MovieType::class, $movie);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            $file = $movie->getImage();
+            $fileName = $fileUploader->upload($file);
+
+            $movie->setImage($fileName);
+            
             $em = $this->getDoctrine()->getManager();
             $em->persist($movie);
             $em->flush();
@@ -57,17 +65,27 @@ class MovieController extends Controller
     /**
      * @Route("/{id}/edit", name="movie_edit", methods="GET|POST")
      */
-    public function edit(Request $request, Movie $movie): Response
+    public function edit(Request $request, Movie $movie, FileUploader $fileUploader): Response
     {
+      
+        $movie->setImage(
+            new File($this->getParameter('images_directory').'/'.$movie->getImage())
+        );
         $form = $this->createForm(MovieType::class, $movie);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            $file = $movie->getImage();
+            $fileName = $fileUploader->upload($file);
+            $movie->setImage($fileName);
+            
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('movie_edit', ['id' => $movie->getId()]);
         }
-
+        
+        
         return $this->render('movie/edit.html.twig', [
             'movie' => $movie,
             'form' => $form->createView(),
@@ -87,4 +105,5 @@ class MovieController extends Controller
 
         return $this->redirectToRoute('movie_index');
     }
+    
 }

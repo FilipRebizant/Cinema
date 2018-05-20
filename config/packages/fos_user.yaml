@@ -3,5 +3,19 @@ fos_user:
     firewall_name: main
     user_class: App\Entity\FOSUser
     from_email:
-        address: "SymfonyCinema@gmail.com"
-        sender_name: "CinemaCity"
+        address: ymfonyCinema@gmail.com
+        sender_name: CinemaCity
+    use_listener: false
+    
+    registration:
+        confirmation:
+            from_email:
+                address: ymfonyCinema@gmail.com
+                sender_name: CinemaCity
+            enabled: true
+    
+    resetting:
+        email:
+            from_email:
+                address: ymfonyCinema@gmail.com
+                sender_name: CinemaCity

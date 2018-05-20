@@ -10,15 +10,16 @@
         <input type="hidden" value="{{ screening.getHall().getNumberOfSeatsH() }}" id="seats_number">
         <input type="hidden" value="{{ path('reservations_get', {'id': screening.id}) }}" id="reservation_url">
         <input type="hidden" value="{{screening.id}}" id="screening_id">
+
         <div class="alert alert-success hide"></div>
 
         <h5 class="hall__number">Sala {{ screening.hall }}</h5>
 
-
+        <p> {{ screening.startDate ? screening.startDate|date('d.m.Y') : '' }}</p>
         {% for movie in screening.movies %}
 
             <h2 class="hall__movie_title">{{ movie.title }}</h2>
-            <h5>Godzina rozpoczęcia {{ screening.startDate ? screening.startDate|date('Y-m-d H:i:s') : '' }}</h5>
+            <h5>Godzina rozpoczęcia {{ screening.startDate ? screening.startDate|date('H:i') : '' }}</h5>
 
         {% endfor %}
 
@@ -33,6 +34,17 @@
             <button class="btn btn-primary">Zarezerwuj</button>
 
         </form>
+
+        <hr>
+        <section class="hall__legend">
+            <h5 class="mb-3">Legenda</h5>
+            <ul class="hall__legend_list">
+                <li class="hall__legend_list__list_item hall__legend_list__list_item-free">
+                    <span class="hall__legend_list__list_item-free"></span>Wolne miejsce</li>
+                <li class="hall__legend_list__list_item"><span class="hall__legend_list__list_item-booked"></span>Zajęte miejsce</li>
+                <li class="hall__legend_list__list_item"><span class="hall__legend_list__list_item-active"></span>Aktualnie rezerwowane miejsce</li>
+            </ul>
+        </section>
 
     </div><!-- hall-->
 

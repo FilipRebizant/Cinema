@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class MovieType extends AbstractType {
 
@@ -21,6 +22,7 @@ class MovieType extends AbstractType {
                 ->add('grade', ChoiceType::class, array(
                     'choices' => $this->getChoices(),
                     'attr' => array('class' => 'form-control')))
+                ->add('image', FileType::class, array('label' => 'Image', 'attr' => array('class' => 'form-control')))
                 ->add('url', null, array('attr' => array('class' => 'form-control')))
 
         ;

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -62,6 +63,17 @@ class Movie
      * @ORM\ManyToMany(targetEntity="App\Entity\Screening", mappedBy="movies")
      */
     private $screenings;
+    
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Please, upload the product brochure as a Image file.")
+     * @Assert\File(mimeTypes={ "image/*" })
+     */
+    private $image;
+
+    
+    
 
     public function __construct()
     {
@@ -208,4 +220,15 @@ class Movie
         return $this;
     }
 
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
 }

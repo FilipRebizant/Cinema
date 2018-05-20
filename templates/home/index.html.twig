@@ -3,6 +3,11 @@
 {% block title %}Home page{% endblock %}
 
 {% block body %}
+    {#<div class="curr">{{ currentScreenings }}</div>#}
+
+    {% for screening in currentScreenings %}
+        {{ dump(screening) }}
+{% endfor %}
 
     <section class="new_movies">
         <h2>Nowości</h2>
@@ -31,7 +36,8 @@
                             <!-- Text -->
                             <p class="card-text">{{ newMovie.description|length > 100 ? newMovie.description|slice(0, 100) ~ '...' : newMovie.description }}</p>
                             <!-- Button -->
-                            <a href="{{ path('movie_show', {'id': newMovie.id}) }}" class="btn btn-primary">Czytaj więcej</a>
+                            <a href="{{ path('movie_show', {'id': newMovie.id}) }}" class="btn btn-primary">Czytaj
+                                więcej</a>
 
                         </div>
 
@@ -42,53 +48,83 @@
         </div>
     </section>
 
-    <!-- Section -->
+
+
+    {#<!-- Section -->#}
     <section class="screening_schedule">
 
         <!-- Section heading -->
         <h2 class="h1-responsive font-weight-bold text-center my-5">Repertuar</h2>
+{{ dump(currentScreenings) }}
+        <ul class="nav md-pills nav-justified pills-secondary">
+            {% for key,screening in currentScreenings %}
 
-        {% for movie in movies %}
-            <!-- Grid row -->
-            <div class="row">
+                <li class="nav-item">
+                    {#<a class="nav-link" data-toggle="tab" href="#panel{{ key }}"#}
+                       {#role="tab">{{ screening[0].startDate|date('d.m') }}</a>#}
+                </li>
 
-                <!-- Grid column -->
-                <div class="col-lg-5 col-xl-4">
+            {% endfor %}
+        </ul>
 
-                    <!-- Featured image -->
-                    <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                        <img class="img-fluid" src="{{ movie.url }}" alt="Sample image">
-                        <a href="{{ path('movie_show', {'id': movie.id}) }}">
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
+        <!-- Tab panels -->
+        {#<div class="tab-content">#}
+            {#{% for key,screening in currentScreenings %}#}
+                {#<!--Panel 1-->#}
+                {#<div class="tab-pane fade" id="panel{{ key }}" role="tabpanel">#}
+                    {#<br>#}
+                    {#{{ screening[0].startDate|date('d.m') }}#}
 
-                </div>
-                <!-- Grid column -->
+                    {#{% for movie in screening[0].movies %}#}
+                        {#<!-- Grid row -->#}
+                        {#<div class="row">#}
 
-                <!-- Grid column -->
-                <div class="col-lg-7 col-xl-8">
+                            {#<!-- Grid column -->#}
+                            {#<div class="col-lg-5 col-xl-4">#}
 
-                    <h3 class="font-weight-bold mb-3"><strong>{{ movie.title }}</strong></h3>
+                                {#<!-- Featured image -->#}
+                                {#<div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">#}
+                                    {#<img class="img-fluid" src="{{ movie.url }}" alt="Sample image">#}
+                                    {#<a href="{{ path('movie_show', {'id': movie.id}) }}">#}
+                                        {#<div class="mask rgba-white-slight"></div>#}
+                                    {#</a>#}
+                                {#</div>#}
 
-                    <p class="dark-grey-text">{{ movie.description}}</p>
+                            {#</div>#}
+                            {#<!-- Grid column -->#}
 
-                    <p>Godziny seansów</p>
+                            {#<!-- Grid column -->#}
+                            {#<div class="col-lg-7 col-xl-8">#}
 
-                    <a href="{{ path('screening_show', {'id': movie.id}) }}" class="btn btn-elegant">18:00</a>
-                    <a href="#" class="btn btn-elegant">20:30</a>
+                                {#<h3 class="font-weight-bold mb-3"><strong>{{ movie.title }}</strong></h3>#}
 
-                </div>
-                <!-- Grid column -->
+                                {#<p class="dark-grey-text">{{ movie.description }}</p>#}
 
-            </div>
-            <!-- Grid row -->
+                                {#<p>Godziny seansów</p>#}
 
-            <hr class="my-5">
+                                {#{% for screening in movie.screenings %}#}
+                                    {#<a href="{{ path('screening_show', {'id': movie.id}) }}"#}
+                                       {#class="btn btn-elegant">{{ screening.startDate ? screening.startDate|date('H:i') : '' }}</a>#}
+                                {#{% endfor %}#}
 
-        {% endfor %}
+                            {#</div>#}
+                            {#<!-- Grid column -->#}
+
+                        {#</div>#}
+                        {#<!-- Grid row -->#}
+
+                        {#<hr class="my-5">#}
+
+                    {#{% endfor %}#}
+
+                {#</div>#}
+                {#<!--/.Panel 1-->#}
+            {#{% endfor %}#}
+        {#</div>#}
+
+
 
     </section>
-    <!-- Section-->
+    {#<!-- Section-->#}
 
 {% endblock %}

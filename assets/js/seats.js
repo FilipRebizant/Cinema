@@ -4,23 +4,16 @@ $(document).ready(function () {
 
         row_number: $('#rows_number').val(),
         seats_number: $('#seats_number').val(),
-        screening_id : $('#screening_id').val(),
-        
+        screening_id: $('#screening_id').val(),
         reserved_seats: [],
-        // currently_booked_seats: [
-        //     {'row': 3, 'seat': 5}
-        // ],
-        // currently_booked_seats: this.getReservations,
 
         init: function () {
             this.cacheDom();
-            // this.getReservations();
             this.renderSeats();
             this.bindEvents();
         },
 
         cacheDom: function () {
-
             this.$seats__container = $('.seats__container');
             this.$seat = this.$seats__container.find('.seats__seat');
             this.$form = $('#reservation__form');
@@ -36,47 +29,49 @@ $(document).ready(function () {
 
             var row_number = this.row_number,
                 seats_number = this.seats_number,
-                seats_container = this.$seats__container,
-                reservations = this.getReservations();
+                seats_container = this.$seats__container;
 
 
-            $(document).ajaxComplete(function (data) {
-                var currently_booked_seats = reservations.responseJSON.current_reservations;
-                
-                console.log(currently_booked_seats);
+            var url = $('#reservation_url').val();
+
+            $.ajax({
+                dataType: 'json',
+                url: url,
+                type: 'POST'
+            }).done(function (data) {
+                var currently_booked_seats = data.current_reservations;
+
+                seats_container.html('');
+
                 for (var i = 0; i < row_number; i++) {
                     var row = $('<ul/>', {'class': 'seats__row'});
                     for (var j = 0; j < seats_number; j++) {
 
+                        row.append($('<li/>', {
+                            class: 'seats__seat',
+                            'data-row': i + 1,
+                            'data-seat': j + 1
+                        }).append(j + 1));
+
                         for (var k = 0; k < currently_booked_seats.length; k++) {
 
                             if (j == (currently_booked_seats[k].seat - 1) && i == currently_booked_seats[k].row - 1) {
-                                row.append($('<li/>', {
-                                    class: 'seats__seat seats__seat-active disabled',
-                                    'data-row': i + 1,
-                                    'data-seat': j + 1
-                                }).append(j + 1));
-
-                            } else {
-                                row.append($('<li/>', {
-                                    class: 'seats__seat',
-                                    'data-row': i + 1,
-                                    'data-seat': j + 1
-                                }).append(j + 1));
+                                row[0].children[j].classList.add('seats__seat-booked', 'disabled');
                             }
+
                         }
 
                     }
-
                     seats_container.append(row);
                 }
 
             });
+
         },
 
         bookASeat: function (e) {
 
-            
+
             var $seat = ($(e.target)),
                 row_number = $seat.data('row'),
                 seat_number = $seat.data('seat');
@@ -106,14 +101,16 @@ $(document).ready(function () {
         },
 
         sendData: function (e) {
-            
+
             e.preventDefault();
-            var reserved_seats = this.reserved_seats;
-            // console.log(reserved_seats);
+            var reserved_seats = this.reserved_seats,
+                screening_id = this.screening_id,
+                renderSeats = this.renderSeats.bind(this);
+
             $.ajax({
 
                 url: this.$form.attr('action'),
-                data: {seats: reserved_seats, screeningId = this.screening_id},
+                data: {seats: reserved_seats, screeningId: screening_id},
                 type: 'post'
 
 
@@ -121,27 +118,16 @@ $(document).ready(function () {
 
                 $('.alert-success').html(data.info);
                 $('.hide').fadeIn();
+                renderSeats();
 
             });
-
-        },
-
-        getReservations: function () {
-            var url = $('#reservation_url').val();
-
-            var result = $.ajax({
-                dataType: 'json',
-                url: url,
-                type: 'POST'
-            });
-
-            return result;
+            this.reserved_seats = [];
 
         }
 
     };
 
     seats.init();
-    
+
 
 });

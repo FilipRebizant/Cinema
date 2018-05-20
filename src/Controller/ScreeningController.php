@@ -55,9 +55,6 @@ class ScreeningController extends Controller
      */
     public function show(Screening $screening): Response
     {
-//        $bookedSeats = $screening->getReservations();
-//        var_dump($bookedSeats);
-
         return $this->render('screening/show.html.twig', ['screening' => $screening]);
     }
 
@@ -107,30 +104,13 @@ class ScreeningController extends Controller
         $reservations = $screening->getReservations();
         $arr = array();
 
-
         foreach ($reservations as $key => $reservation) {
-//            $arr[$key] => {}
             array_push($arr, array(
                 'row'=> $reservation->getRow(),
                 'seat' => $reservation->getSeat()
             ));
         }
-//        $reservations = $repository->findBy(array(), array($id));
-//        $reservations = $repository->find($id);
 
-//        dump($screening->getReservations());
-//        foreach ($reservations as $reservation) {
-//            array_push($arr, $reservation.seat);
-//            var_dump($reservation);
-//            $arr = var_dump($reservation);
-//        var_dump($reservation);
-//        }
-//        $reservations = $repository->findAll();
-//        Screening::
-//        $reservations = $this->getDoctrine()->getRepository(Screening::class)->findAll();
-
-//    dump(json_encode($arr));
-//        return Response$reservations;
         return new JsonResponse([
             'current_reservations' => ($arr)
         ], 200);

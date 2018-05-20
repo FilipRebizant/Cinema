@@ -12,6 +12,7 @@
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Price</th>
+                <th>Movies</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -27,6 +28,11 @@
                 <td>{{ screening.startDate ? screening.startDate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ screening.endDate ? screening.endDate|date('Y-m-d H:i:s') : ''}}</td>
                 <td>{{ screening.price}}</td>
+                <td>
+                    {% for movie in screening.movies %}
+                        {{ movie.id}}
+                    {% endfor %}
+                </td>
 
                 <td>
                     <a href="{{ path('screening_show', {'id': screening.id}) }}">show</a>

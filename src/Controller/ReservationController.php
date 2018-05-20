@@ -54,8 +54,6 @@ class ReservationController extends Controller
             $em->persist($reservation);
             $em->flush();
         }
-        return new JsonResponse(['info' => 'Pomyślnie wykonano rezerwację'], 200);
-
     }
 
     /**
@@ -91,7 +89,7 @@ class ReservationController extends Controller
      */
     public function delete(Request $request, Reservation $reservation): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$reservation->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $reservation->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($reservation);
             $em->flush();
