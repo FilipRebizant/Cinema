@@ -16,7 +16,10 @@ class MovieType extends AbstractType {
                 ->add('title', null, array('attr' => array('class' => 'form-control')))
                 ->add('age' , null, array('attr' => array('class' => 'form-control')))
                 ->add('description', null, array('attr' => array('class' => 'form-control')))
-                ->add('category', null, array('attr' => array('class' => 'form-control')))
+                ->add('category', ChoiceType::class, array(
+                    'choices' => $this->getCategories(),
+                    'attr' => array('class' => 'form-control')
+                ))
                 ->add('time', null, array('attr' => array('class' => 'form-control')))
                 ->add('release_date', null, array('attr' => array('class' => 'form-control')))
                 ->add('grade', ChoiceType::class, array(
@@ -40,5 +43,17 @@ class MovieType extends AbstractType {
         }
         return $out;
     }
+
+    public function getCategories()
+    {
+        $categories = [
+            'Dramat' => 'Dramat',
+            'Horror' => 'Horror',
+            'Komedia' => 'Komedia',
+            'Przygodowy' => 'Przygodowy',
+        ];
+        return $categories;
+    }
+
 
 }

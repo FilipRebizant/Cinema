@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Screening;
 use App\Entity\Movie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\ResultSetMapping;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\Intl\DateFormatter\DateFormat;
 
@@ -53,34 +54,59 @@ class ScreeningRepository extends ServiceEntityRepository
     public function getScreeningSchedule()
     {
         //Działa ale zwraca tylko 1 rekord
-        return  $this->createQueryBuilder('s')
-             ->select('s')
-             ->addSelect('DATE_FORMAT(s.start_date, \'%d.%m.%Y\') as day')
-//             ->innerJoin('s.movie', 'm')
-//             ->addSelect('m')
-//                 ->orderBy('DESC')
-            
-//            ->groupby('day')
-            
-               
-            ->getQuery()
-            ->getResult();
-//        
-//        dump($r[0]);
-//        die('asd');
-//         return 
+//         return $this->createQueryBuilder('s')
+//             ->select('s')
+//             ->addSelect('DATE_FORMAT(s.start_date, \'%d.%m\') as day')
+//            ->innerJoin('s.movies', 'm')
+//            ->addSelect('m')
+////             ->groupBy('day')
+//            ->getQuery()
+//            ->getResult();
 
-         
 
-        return $this->getEntityManager()
-            ->createQuery("
-                SELECT s.start_date, DATE_FORMAT(s.start_date, '%d.%m') as day, m.title, 
-                FROM App\Entity\Screening s, App\Entity\Movie m
-                WHERE s.id = m.id
-                GROUP BY day
-                
-                ")
-            ->getResult();
+//        return $this->getEntityManager()
+//            ->createQuery("
+//                SELECT s.start_date, DATE_FORMAT(s.start_date, '%d.%m') as day, m.title, s.hall
+//                FROM App\Entity\Screening s, App\Entity\Movie m
+//                WHERE s.id = m.id
+//                GROUP BY day
+//
+//                ")
+//            ->getResult();
+
+        $entityManager = $this->getEntityManager();
+//        $sql = "SELECT u.id, u.name, a.id AS address_id, a.street, a.city " .
+//            "FROM users u INNER JOIN address a ON u.address_id = a.id";
+//
+//        $rsm = new ResultSetMappingBuilder($entityManager);
+//        $rsm->addRootEntityFromClassMetadata('MyProject\User', 'u');
+//        $rsm->addJoinedEntityFromClassMetadata('MyProject\Address', 'a', 'u', 'address', array('id' => 'address_id'));
+
+//        $rsm = new ResultSetMapping();
+//// build rsm here
+//
+//        $query = $entityManager->createNativeQuery('SELECT price FROM screening', $rsm);
+////        $query->setParameter(1, '');
+//
+//        $result = $query->getResult();
+
+        $rsm = new ResultSetMapping;
+        $rsm->addEntityResult(Screening::class, 's');
+        $rsm->addFieldResult('s', 'id', 'id');
+//        $rsm->addFieldResult('u', 'name', 'name');
+//        $rsm->addMetaResult('u', 'address_id', 'address_id');
+
+        $query = $this->_em->createNativeQuery('
+            SELECT s.id, DATE_FORMAT(start_date, \'%d.%m\') as day
+            FROM  screening s
+            GROUP BY day
+        ', $rsm);
+//        $query->setParameter(1, 'romanb');
+
+        $result = $query->getResult();
+
+
+        return $result;
     }
 
 }
