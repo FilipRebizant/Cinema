@@ -60,67 +60,68 @@
             {% for key,screening in currentScreenings %}
 
                 <li class="nav-item">
-                    {#<a class="nav-link" data-toggle="tab" href="#panel{{ key }}"#}
-                       {#role="tab">{{ screening[0].startDate|date('d.m') }}</a>#}
+                    <a class="nav-link" data-toggle="tab" href="#panel{{ key }}"
+                       role="tab">{{ screening.startDate|date('d.m') }}</a>
+                    {#{{ screening.startDate|date('d.m') }}#}
                 </li>
 
             {% endfor %}
         </ul>
 
         <!-- Tab panels -->
-        {#<div class="tab-content">#}
-            {#{% for key,screening in currentScreenings %}#}
-                {#<!--Panel 1-->#}
-                {#<div class="tab-pane fade" id="panel{{ key }}" role="tabpanel">#}
-                    {#<br>#}
-                    {#{{ screening[0].startDate|date('d.m') }}#}
+        <div class="tab-content">
+            {% for key,screening in currentScreenings %}
+                <!--Panel 1-->
+                <div class="tab-pane fade" id="panel{{ key }}" role="tabpanel">
+                    <br>
+                    {{ screening.startDate|date('d.m') }}
+                        {#{{ (screening.getMovies()) }}#}
+                    {% for movie in screening.getMovies() %}
+                        <!-- Grid row -->
+                        <div class="row">
 
-                    {#{% for movie in screening[0].movies %}#}
-                        {#<!-- Grid row -->#}
-                        {#<div class="row">#}
+                            <!-- Grid column -->
+                            <div class="col-lg-5 col-xl-4">
 
-                            {#<!-- Grid column -->#}
-                            {#<div class="col-lg-5 col-xl-4">#}
+                                <!-- Featured image -->
+                                <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
+                                    <img class="img-fluid" src="{{ movie.url }}" alt="Sample image">
+                                    <a href="{{ path('movie_show', {'id': movie.id}) }}">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
 
-                                {#<!-- Featured image -->#}
-                                {#<div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">#}
-                                    {#<img class="img-fluid" src="{{ movie.url }}" alt="Sample image">#}
-                                    {#<a href="{{ path('movie_show', {'id': movie.id}) }}">#}
-                                        {#<div class="mask rgba-white-slight"></div>#}
-                                    {#</a>#}
-                                {#</div>#}
+                            </div>
+                            <!-- Grid column -->
 
-                            {#</div>#}
-                            {#<!-- Grid column -->#}
+                            <!-- Grid column -->
+                            <div class="col-lg-7 col-xl-8">
 
-                            {#<!-- Grid column -->#}
-                            {#<div class="col-lg-7 col-xl-8">#}
+                                <h3 class="font-weight-bold mb-3"><strong>{{ movie.title }}</strong></h3>
 
-                                {#<h3 class="font-weight-bold mb-3"><strong>{{ movie.title }}</strong></h3>#}
+                                <p class="dark-grey-text">{{ movie.description }}</p>
 
-                                {#<p class="dark-grey-text">{{ movie.description }}</p>#}
+                                <p>Godziny seansów</p>
 
-                                {#<p>Godziny seansów</p>#}
+                                {% for screening in movie.screenings %}
+                                    <a href="{{ path('screening_show', {'id': movie.id}) }}"
+                                       class="btn btn-elegant">{{ screening.startDate ? screening.startDate|date('H:i') : '' }}</a>
+                                {% endfor %}
 
-                                {#{% for screening in movie.screenings %}#}
-                                    {#<a href="{{ path('screening_show', {'id': movie.id}) }}"#}
-                                       {#class="btn btn-elegant">{{ screening.startDate ? screening.startDate|date('H:i') : '' }}</a>#}
-                                {#{% endfor %}#}
+                            </div>
+                            <!-- Grid column -->
 
-                            {#</div>#}
-                            {#<!-- Grid column -->#}
+                        </div>
+                        <!-- Grid row -->
 
-                        {#</div>#}
-                        {#<!-- Grid row -->#}
+                        <hr class="my-5">
 
-                        {#<hr class="my-5">#}
+                    {% endfor %}
 
-                    {#{% endfor %}#}
-
-                {#</div>#}
-                {#<!--/.Panel 1-->#}
-            {#{% endfor %}#}
-        {#</div>#}
+                </div>
+                <!--/.Panel 1-->
+            {% endfor %}
+        </div>
 
 
 
