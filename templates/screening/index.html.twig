@@ -30,7 +30,7 @@
                 <td>{{ screening.price}}</td>
                 <td>
                     {% for movie in screening.movies %}
-                        {{ movie.id}}
+                        <a href="{{ path('movie_show', {'id': movie.id}) }}">{{movie.title}}</a><br>
                     {% endfor %}
                 </td>
 

@@ -31,7 +31,6 @@ class ReservationController extends Controller
      */
     public function new(Request $request): JsonResponse
     {
-        
         $screeningId = $request->get('screeningId');
         $reseravtion = $this->getDoctrine()
                     ->getRepository(Reservation::class)->findBy([], ['id'=> 'DESC'], 1); 
