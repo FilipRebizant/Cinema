@@ -70,21 +70,5 @@ class ChangePasswordFormType extends AbstractType
         return 'FOS\UserBundle\Form\Type\ChangePasswordFormType';
     }
 
-    // BC for SF < 3.0
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
-    {
-        return 'fos_user_change_password';
-    }
+    
 }

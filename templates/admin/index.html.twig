@@ -8,7 +8,7 @@
        
        Welcome Admin {{app.user.username}}
        
-       {#<div class="dropdown show">
+{#       <div class="dropdown show">
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Service
             </a>
@@ -18,7 +18,7 @@
               <a class="dropdown-item" href="{{ path('hall_index') }}">Sale</a>
               <a class="dropdown-item"  href="{{ path('screening_index') }}">Seanse</a>
               <a class="dropdown-item"  href="{{ path('reservation_index') }}">Rezerwacje</a>
-{#              <a class="dropdown-item"  href="{{ path('user_index') }}">Users</a>#}
+              <a class="dropdown-item"  href="{{ path('user_index') }}">Users</a>
 {#            </div>#}
         
        
@@ -38,9 +38,23 @@
   <li class="list-group-item">
       <a class="nav-link js-scroll-trigger" href="{{ path('admin_users') }}">Użytkownicy</a>
   </li>
-  <li class="list-group-item">
+  
+  
+  
+</ul>
+  <hr>
+  <h2>KONTO</h2>
+  <ul class="list-group">
+      <li class="list-group-item">
+      <a class="nav-link js-scroll-trigger" href="{{ path('fos_user_profile_edit') }}">Edytuj konto</a>
+    </li>
+
+    <li class="list-group-item">
+        <a class="nav-link js-scroll-trigger" href="{{ path('fos_user_change_password') }}">Zmień hasło</a>
+    </li>
+    <li class="list-group-item">
       <a class="nav-link js-scroll-trigger" href="/logout">Wyloguj</a>
   </li>
-</ul>
+  </ul>
 </div>
  {% endblock %}

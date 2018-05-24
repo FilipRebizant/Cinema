@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends Controller
 {
     /**
-     * @Route("/adminsite", name="admin_index", methods="GET")
+     * @Route("/profile", name="admin_index", methods="GET")
      */
     public function index(): Response
     {
