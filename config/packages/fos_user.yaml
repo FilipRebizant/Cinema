@@ -13,9 +13,22 @@ fos_user:
                 address: ymfonyCinema@gmail.com
                 sender_name: CinemaCity
             enabled: true
+        form:
+            type: App\Form\RegistrationFormType
     
     resetting:
         email:
             from_email:
                 address: ymfonyCinema@gmail.com
                 sender_name: CinemaCity
+        form:
+            type: App\Form\ResettingFormType
+    profile:
+        form:
+            type: App\Form\ProfileFormType
+    change_password:
+        form:
+            type: App\Form\ChangePasswordFormType
+        
+    
+        

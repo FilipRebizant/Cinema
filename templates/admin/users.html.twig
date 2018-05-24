@@ -3,7 +3,7 @@
 {% block title %}Movie index{% endblock %}
 
 {% block body %}
-    <h1>Lista filmów</h1>
+    <h1>Użytkownicy</h1>
 
     <table class="table">
         <thead class="mdb-color darken-3">
@@ -29,8 +29,8 @@
                 </td>
                 
                 <td>
-                   {# <a class="btn btn-dark" href="{{ path('movie_show', {'id': movie.id}) }}">Pokaż</a>
-                    <a class="btn btn-dark" href="{{ path('movie_edit', {'id': movie.id}) }}">Edytuj</a>#}
+                    <a class="btn btn-dark" href="{{ path('admin_user_promote', {'id': user.id}) }}">Set Roles</a>
+{#                    <a class="btn btn-dark" href="{{ path('movie_edit', {'id': movie.id}) }}">Edytuj</a>#}
                 </td>
             </tr>
         {% else %}

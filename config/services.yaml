@@ -28,7 +28,23 @@ services:
     App\Service\FileUploader:
         arguments:
             $targetDirectory: '%images_directory%'
-
+        
+    app.form.registration:
+        class: App\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: app_user_registration }
+    app.form.resetting:
+        class: App\Form\ResettingType
+        tags:
+            - { name: form.type, alias: app_user_resetting }
+    app.form.profile:
+        class: App\Form\ProfileType
+        tags:
+            - { name: form.type, alias: app_user_profile }
+    app.form.change_password:
+        class: App\Form\ChangePasswordType
+        tags:
+            - { name: form.type, alias: app_user_change_password }
 
     
     

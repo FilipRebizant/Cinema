@@ -39,10 +39,7 @@ class Movie
      */
     private $description;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $url;
+    
     
     /**
      * @ORM\Column(type="date", nullable=true)
@@ -117,18 +114,6 @@ class Movie
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getUrl(): ?string
-    {
-        return $this->url;
-    }
-
-    public function setUrl(?string $url): self
-    {
-        $this->url = $url;
 
         return $this;
     }
