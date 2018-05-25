@@ -54,59 +54,16 @@ class ScreeningRepository extends ServiceEntityRepository
     public function getScreeningSchedule()
     {
         //Działa ale zwraca tylko 1 rekord
-//         return $this->createQueryBuilder('s')
-//             ->select('s')
-//             ->addSelect('DATE_FORMAT(s.start_date, \'%d.%m\') as day')
-//            ->innerJoin('s.movies', 'm')
-//            ->addSelect('m')
-////             ->groupBy('day')
-//            ->getQuery()
-//            ->getResult();
-
-
-//        return $this->getEntityManager()
-//            ->createQuery("
-//                SELECT s.start_date, DATE_FORMAT(s.start_date, '%d.%m') as day, m.title, s.hall
-//                FROM App\Entity\Screening s, App\Entity\Movie m
-//                WHERE s.id = m.id
-//                GROUP BY day
-//
-//                ")
-//            ->getResult();
-
-        $entityManager = $this->getEntityManager();
-//        $sql = "SELECT u.id, u.name, a.id AS address_id, a.street, a.city " .
-//            "FROM users u INNER JOIN address a ON u.address_id = a.id";
-//
-//        $rsm = new ResultSetMappingBuilder($entityManager);
-//        $rsm->addRootEntityFromClassMetadata('MyProject\User', 'u');
-//        $rsm->addJoinedEntityFromClassMetadata('MyProject\Address', 'a', 'u', 'address', array('id' => 'address_id'));
-
-//        $rsm = new ResultSetMapping();
-//// build rsm here
-//
-//        $query = $entityManager->createNativeQuery('SELECT price FROM screening', $rsm);
-////        $query->setParameter(1, '');
-//
-//        $result = $query->getResult();
-
-        $rsm = new ResultSetMapping;
-        $rsm->addEntityResult(Screening::class, 's');
-        $rsm->addFieldResult('s', 'id', 'id');
-//        $rsm->addFieldResult('u', 'name', 'name');
-//        $rsm->addMetaResult('u', 'address_id', 'address_id');
-
-        $query = $this->_em->createNativeQuery('
-            SELECT s.id, DATE_FORMAT(start_date, \'%d.%m\') as day
-            FROM  screening s
-            GROUP BY day
-        ', $rsm);
-//        $query->setParameter(1, 'romanb');
-
-        $result = $query->getResult();
-
-
-        return $result;
+        $date = date('Y-m-d h:i:s', strtotime("+7 days"));
+         return $this->createQueryBuilder('s')
+            ->select('s')
+            ->addSelect('DATE_FORMAT(s.start_date, \'%Y-%m-%d\') as day')
+            ->where('s.start_date BETWEEN :today AND :n30days')
+            ->setParameter('today', date('Y-m-d h:i:s'))
+            ->setParameter('n30days', $date)
+            ->orderBy('s.start_date')
+            ->getQuery()
+            ->getResult();
     }
 
 }

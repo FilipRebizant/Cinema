@@ -3,11 +3,6 @@
 {% block title %}Home page{% endblock %}
 
 {% block body %}
-    {#<div class="curr">{{ currentScreenings }}</div>#}
-
-    {% for screening in currentScreenings %}
-        {{ dump(screening) }}
-{% endfor %}
 
     <section class="new_movies">
         <h2>Nowości</h2>
@@ -21,7 +16,7 @@
                         <!-- Card image -->
                         <div class="view overlay">
                             <img class="card-img-top"
-                                 src="{{ newMovie.url }}"
+                                 src="{{ asset('uploads/images/' ~ newMovie.image)  }}"
                                  alt="Card image cap">
                             <a href="{{ path('movie_show', {'id': newMovie.id}) }}">
                                 <div class="mask rgba-white-slight"></div>
@@ -55,72 +50,73 @@
 
         <!-- Section heading -->
         <h2 class="h1-responsive font-weight-bold text-center my-5">Repertuar</h2>
-{{ dump(currentScreenings) }}
-        <ul class="nav md-pills nav-justified pills-secondary">
-            {% for key,screening in currentScreenings %}
 
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#panel{{ key }}"
-                       role="tab">{{ screening.startDate|date('d.m') }}</a>
-                    {#{{ screening.startDate|date('d.m') }}#}
-                </li>
 
-            {% endfor %}
-        </ul>
 
         <!-- Tab panels -->
-        <div class="tab-content">
-            {% for key,screening in currentScreenings %}
-                <!--Panel 1-->
-                <div class="tab-pane fade" id="panel{{ key }}" role="tabpanel">
-                    <br>
-                    {{ screening.startDate|date('d.m') }}
-                        {#{{ (screening.getMovies()) }}#}
-                    {% for movie in screening.getMovies() %}
-                        <!-- Grid row -->
-                        <div class="row">
+        
+        <div class="tab">
+            {% for day, screenings in currentScreenings %}
+               <div class="panel panel-default">
+                   <div class="panel-heading text-center"><strong>{{day}}</strong></div>
+                
+                <div class="panel-body">
+                {% for screening in screenings %}
+                    <div class="container">
+                       
+                        
+                            <br>
+                            {{ screening.startDate|date('d.m') }}
+                            
+                            {% for movie in screening.movies %}
+                                <!-- Grid row -->
+                                <div class="row">
 
-                            <!-- Grid column -->
-                            <div class="col-lg-5 col-xl-4">
+                                    <!-- Grid column -->
+                                    <div class="col-lg-5 col-xl-4">
 
-                                <!-- Featured image -->
-                                <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                                    <img class="img-fluid" src="{{ movie.url }}" alt="Sample image">
-                                    <a href="{{ path('movie_show', {'id': movie.id}) }}">
-                                        <div class="mask rgba-white-slight"></div>
-                                    </a>
+                                        <!-- Featured image -->
+                                        <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
+                                            <img class="img-fluid" src="{{ asset('uploads/images/' ~ movie.image)  }}" alt="Sample image">
+                                            <a href="{{ path('movie_show', {'id': movie.id}) }}">
+                                                <div class="mask rgba-white-slight"></div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <!-- Grid column -->
+
+                                    <!-- Grid column -->
+                                    <div class="col-lg-7 col-xl-8">
+
+                                        <h3 class="font-weight-bold mb-3"><strong>{{ movie.title }}</strong></h3>
+
+                                        <p class="dark-grey-text">{{ movie.description }}</p>
+
+                                        <p>Godziny seansów</p>
+
+                                        {% for screening in movie.screenings %}
+                                            <a href="{{ path('screening_show', {'id': movie.id}) }}"
+                                               class="btn btn-elegant">{{ screening.startDate ? screening.startDate|date('H:i') : '' }}</a>
+                                        {% endfor %}
+
+                                    </div>
+                                    <!-- Grid column -->
+
                                 </div>
+                                <!-- Grid row -->
 
-                            </div>
-                            <!-- Grid column -->
+                                <hr class="my-5">
 
-                            <!-- Grid column -->
-                            <div class="col-lg-7 col-xl-8">
+                            {% endfor %}
 
-                                <h3 class="font-weight-bold mb-3"><strong>{{ movie.title }}</strong></h3>
-
-                                <p class="dark-grey-text">{{ movie.description }}</p>
-
-                                <p>Godziny seansów</p>
-
-                                {% for screening in movie.screenings %}
-                                    <a href="{{ path('screening_show', {'id': movie.id}) }}"
-                                       class="btn btn-elegant">{{ screening.startDate ? screening.startDate|date('H:i') : '' }}</a>
-                                {% endfor %}
-
-                            </div>
-                            <!-- Grid column -->
-
-                        </div>
-                        <!-- Grid row -->
-
-                        <hr class="my-5">
-
-                    {% endfor %}
-
+                       </div>
+                {%endfor%}
                 </div>
                 <!--/.Panel 1-->
             {% endfor %}
+              
+        </div>
         </div>
 
 

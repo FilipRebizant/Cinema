@@ -14,7 +14,6 @@ class ScreeningType extends AbstractType
     {
         $builder
             ->add('start_date')
-            ->add('end_date')
             ->add('price')
             ->add('movies')
             ->add('hall')

@@ -24,10 +24,7 @@ class Screening
     private $start_date;
 
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $end_date;
+    
 
 
     /**
@@ -88,20 +85,7 @@ class Screening
         return $this;
     }
 
-    public function getEndDate(): ?\DateTimeInterface
-    {
-        return $this->end_date;
-    }
-
-    public function setEndDate(\DateTimeInterface $endDate): self
-    {
-        $this->end_date = $endDate;
-
-        return $this;
-    }
-
     
-
     /**
      * @return Collection|Reservation[]
      */
