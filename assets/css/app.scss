@@ -5,9 +5,11 @@
 @import 'home_page.scss';
 @import 'movie.scss';
 @import 'admin_area.scss';
+//@import 'jquery.datetimepicker.css';
+//@import 'date-picker.css';
 
-body{
-  //background: #f00;
+.main-color{
+  background: $main-color;
 }
 
 .hide {

@@ -7,12 +7,12 @@
         <h1 class="admin_area__heading">Lista filmów</h1>
 
         <table class="table table-responsive">
-            <thead class="mdb-color darken-3">
-            <tr class="text-white">
+            <thead>
+            <tr>
                 <th>Id</th>
                 <th>Tytuł</th>
                 <th>Wymagany wiek</th>
-                <th>Krótki opis</th>
+                {#<th>Krótki opis</th>#}
                 <th>Czas trwania</th>
                 <th>Kategoria</th>
                 <th>Ocena</th>
@@ -24,17 +24,15 @@
             {% for movie in movies %}
                 <tr>
                     <td>{{ movie.id }}</td>
-                    <td>{{ movie.title }}</td>
+                    <td><a class="admin_area__highlighted_element" href="{{ path('movie_show', {'id': movie.id}) }}">{{ movie.title }}</a></td>
                     <td>{{ movie.age }}</td>
-                    <td>{{ movie.description|length > 100 ? movie.description|slice(0, 100) ~ '...' : movie.description }}</td>
+                    {#<td>{{ movie.description|length > 100 ? movie.description|slice(0, 100) ~ '...' : movie.description }}</td>#}
                     <td>{{ movie.time|date("H:i") }}</td>
                     <td>{{ movie.category }}</td>
                     <td>{{ movie.grade }}</td>
                     <td>
-                        <a class="btn btn-outline-primary waves-effect" href="{{ path('movie_show', {'id': movie.id}) }}">Pokaż</a>
-                        <a class="btn btn-outline-primary waves-effect" href="{{ path('movie_edit', {'id': movie.id}) }}">Edytuj <i class="fa fa-edit" aria-hidden="true"></i></a>
-
-
+                        <a class="btn btn-outline-blue" href="{{ path('movie_edit', {'id': movie.id}) }}">Edytuj <i class="fa fa-edit" aria-hidden="true"></i></a>
+                        <a class="btn btn-outline-blue" href="{{ path('movie_delete', {'id': movie.id}) }}">Usuń <i class="fa fa-trash" aria-hidden="true"></i></a>
                     </td>
                 </tr>
             {% else %}
@@ -45,6 +43,6 @@
             </tbody>
         </table>
 
-        <a class="btn btn-primary" href="{{ path('movie_new') }}">Dodaj film</a>
+        <a class="btn btn-outline-blue" href="{{ path('movie_new') }}">Dodaj film <i class="fa fa-plus"></i></a>
     </section>
 {% endblock %}

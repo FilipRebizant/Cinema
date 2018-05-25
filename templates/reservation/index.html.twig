@@ -1,45 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reservation index{% endblock %}
+{% block title %}Rezerwacje{% endblock %}
 
 {% block body %}
-    <h1>Reservation index</h1>
+    <section class="admin_area">
+        <h1 class="admin_area__heading">Rezerwacje</h1>
 
-    <table class="table">
-        <thead>
+        <table class="table">
+            <thead>
             <tr>
                 <th>Id</th>
-                <th>FirstName</th>
-                <th>Surname</th>
-                <th>Seat</th>
-                <th>Row</th>
-                <th>ReservationNumber</th>
-                <th>actions</th>
+                <th>Numer Rezerwacji</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Miejsce</th>
+                <th>Rząd</th>
+                <th></th>
             </tr>
-        </thead>
-        <tbody>
-        {% for reservation in reservations %}
-            <tr>
+            </thead>
+            <tbody>
+            {% for reservation in reservations %}
+                <tr>
+                    <td>{{ reservation.getId() }}</td>
+                    <td><a class="admin_area__highlighted_element"
+                           href="{{ path('reservation_show', {'id': reservation.id}) }}">{{ reservation.getReservationNumber() }}</a>
+                    </td>
+                    <td>{{ reservation.firstname }}</td>
+                    <td>{{ reservation.surname }}</td>
+                    <td>{{ reservation.getSeat() }}</td>
+                    <td>{{ reservation.getRow() }}</td>
+                    <td>
+                        <a class="btn btn-outline-blue" href="{{ path('reservation_edit', {'id': reservation.id}) }}">Edytuj
+                            <i class="fa fa-edit"></i></a>
+                        <a class="btn btn-outline-blue" href="{{ path('reservation_delete', {'id': reservation.id}) }}">Usuń
+                            <i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Brak rezerwacji w bazie danych</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-
-                <td>{{ reservation.getId()}}</td>
-                <td>{{ reservation.firstname }}</td>
-                <td>{{ reservation.surname }}</td>
-                <td>{{ reservation.getSeat() }}</td>
-                <td>{{ reservation.getRow() }}</td>
-                <td>{{ reservation.getReservationNumber() }}</td>
-                <td>
-                    <a href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>
-                    <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('reservation_new') }}">Create new</a>
+    </section>
 {% endblock %}

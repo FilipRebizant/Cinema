@@ -1,8 +1,29 @@
-.admin_area{
-  &__heading{
+.admin_area {
+  &__heading {
     margin: 1em 0;
   }
-
-
-
+  &__table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+  }
+  &__highlighted_element {
+    font-weight: 700;
+  }
+  .btn {
+    font-weight: 700;
+  }
+  th {
+    font-weight: 700;
+  }
+  .fa-edit{
+    padding-top: 1px;
+  }
+  span{
+    //display: flex;
+    //align-items: center;
+    //margin: 0 1em;
+    //justify-content: space-between;
+  }
 }

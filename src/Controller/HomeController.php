@@ -25,6 +25,7 @@ class HomeController extends AbstractController
         $newMovies = $moviesRepository->findBy(array(), array('id' => 'DESC'), 3);
         $currentScreenings = $screeningRepository->getScreeningSchedule();
         $previousDate = null;
+        $schedule = [];
       
         foreach($currentScreenings as $screening)
         {

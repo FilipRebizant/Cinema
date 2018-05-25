@@ -3,47 +3,40 @@
 {% block title %}Hall index{% endblock %}
 
 {% block body %}
-    <h1>Hall index</h1>
+    <section class="admin_area">
+        <h1 class="admin_area__heading">Sale kinowe</h1>
 
-    <table class="table">
-        <thead class="mdb-color darken-3">
-        <tr class="text-white">
-            <th>Id</th>
-            <th>Numer sali</th>
-            <th>Ilość rzędów</th>
-            <th>Ilość miejsc</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for hall in halls %}
-            
+        <table class="table">
+            <thead>
             <tr>
-                <td>{{ hall.id }}</td>
-
-
-                <td>{{ hall.getHallNumber }}</td>
-                <td>{{ hall.getNumberOfSeatsV }}</td>
-                <td>{{ hall.getNumberOfSeatsH }}</td>
-
-
-        {#<td>{{ hall.numberOfSeatsV }}</td>#}
-                {#<td>{{ hall.numberOfSeatsH }}</td>#}
-                {#<td>{{ hall.hallNumber }}</td>#}
-
-
-                <td>
-                    <a class="btn btn-dark" href="{{ path('hall_show', {'id': hall.id}) }}">Pokaż</a>
-                    <a class="btn btn-dark" href="{{ path('hall_edit', {'id': hall.id}) }}">Edytuj</a>
-                </td>
+                <th>Id sali</th>
+                <th>Numer sali</th>
+                <th>Ilość rzędów</th>
+                <th>Ilość miejsc w rzędzie</th>
+                <th></th>
             </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">Brak sal do wyświetlenia</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for hall in halls %}
 
-    <a class="btn btn-primary" href="{{ path('hall_new') }}">Dodaj sale</a>
+                <tr>
+                    <td>{{ hall.id }}</td>
+                    <td><a class="admin_area__highlighted_element" href="{{ path('hall_show', {'id': hall.id}) }}">{{ hall.getHallNumber }}</a></td>
+                    <td>{{ hall.getNumberOfSeatsV }}</td>
+                    <td>{{ hall.getNumberOfSeatsH }}</td>
+                    <td>
+                        <a class="btn btn-outline-primary waves-effect" href="{{ path('hall_edit', {'id': hall.id}) }}">Edytuj <i class="fa fa-edit" aria-hidden="true"></i></a>
+                        <a class="btn btn-outline-primary waves-effect" href="{{ path('hall_delete', {'id': hall.id}) }}">Usuń <i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Brak sal do wyświetlenia</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="btn btn-outline-blue" href="{{ path('hall_new') }}">Dodaj nową sale <i class="fa fa-plus"></i></a>
+    </section>
 {% endblock %}

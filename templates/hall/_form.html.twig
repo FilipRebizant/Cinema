@@ -1,7 +1,10 @@
-    {{ form_widget(form) }}
+{#{% form_theme form _self %}#}
+{#{% use "bootstrap_4_horizontal_layout.html.twig" %}#}
+
+{#{{ form_widget(form) }}#}
     {{ form_errors(form.number_of_seats_v) }}
     {{ form_label(form.number_of_seats_v) }}
     {{ form_widget(form.number_of_seats_v) }}
 
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{#{{ form_end() }}#}
+    {#<button class="btn">{{ button_label|default('Zapisz') }}</button>#}
+{#{{ form_end(form) }}#}

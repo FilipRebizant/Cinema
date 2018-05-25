@@ -1,49 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Screening index{% endblock %}
+{% block title %}Seanse{% endblock %}
 
 {% block body %}
-    <h1>Screening index</h1>
+    <section class="admin_area">
+        <h1 class="admin_area__heading">Seanse</h1>
 
-    <table class="table">
-        <thead>
+        <table class="table">
+            <thead>
             <tr>
                 <th>Id</th>
-                <th>Start Date</th>
-                <th>Price</th>
-                <th>Movies</th>
-                <th>actions</th>
+                <th>Data</th>
+                <th>Godzina rozpoczęcia</th>
+                <th>Cena</th>
+                <th>Film</th>
+                <th></th>
             </tr>
-        </thead>
-        <tbody>
-        {% for screening in screenings %}
-            <tr>
-                <td>{{ screening.id }}</td>
+            </thead>
+            <tbody>
+            {% for screening in screenings %}
+                <tr>
+                    <td><a class="admin_area__highlighted_element" href="{{ path('screening_show', {'id': screening.id}) }}">{{ screening.id }}</a></td>
+                    <td>{{ screening.startDate ? screening.startDate|date('d.m.Y') : '' }}</td>
+                    <td>{{ screening.startDate ? screening.startDate|date('H:i') : '' }}</td>
+                    <td>{{ screening.price }} zł</td>
+                    <td>
+                        {% for movie in screening.movies %}
+                            <a class="admin_area__highlighted_element" href="{{ path('movie_show', {'id': movie.id}) }}">{{ movie.title }}</a><br>
+                        {% endfor %}
+                    </td>
 
+                    <td>
+                        <a class="btn btn-outline-blue" href="{{ path('screening_edit', {'id': screening.id}) }}">Edytuj <i class="fa fa-edit"></i></a>
+                        <a class="btn btn-outline-blue" href="{{ path('screening_delete', {'id': screening.id}) }}">Usuń <i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Brak seansów w bazie danych</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-                {#<td>{{ screening.date ? screening.date|date('Y-m-d') : '' }}</td>#}
-                {#<td>{{ screening.date ? screening.date|date('H:i:s') : '' }}</td>#}
-
-                <td>{{ screening.startDate ? screening.startDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ screening.price}}</td>
-                <td>
-                    {% for movie in screening.movies %}
-                        <a href="{{ path('movie_show', {'id': movie.id}) }}">{{movie.title}}</a><br>
-                    {% endfor %}
-                </td>
-
-                <td>
-                    <a href="{{ path('screening_show', {'id': screening.id}) }}">show</a>
-                    <a href="{{ path('screening_edit', {'id': screening.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('screening_new') }}">Create new</a>
+        <a class="btn btn-outline-blue" href="{{ path('screening_new') }}">Dodaj seans <i class="fa fa-plus"></i></a>
+    </section>
 {% endblock %}
