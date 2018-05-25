@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Movie index{% endblock %}
+{% block title %}Filmy{% endblock %}
 
 {% block body %}
-    <h1>Lista filmów</h1>
+    <section class="admin_area">
+        <h1 class="admin_area__heading">Lista filmów</h1>
 
-    <table class="table">
-        <thead class="mdb-color darken-3">
+        <table class="table table-responsive">
+            <thead class="mdb-color darken-3">
             <tr class="text-white">
                 <th>Id</th>
                 <th>Tytuł</th>
@@ -14,34 +15,36 @@
                 <th>Krótki opis</th>
                 <th>Czas trwania</th>
                 <th>Kategoria</th>
-                <th>Data Premiery</th>
                 <th>Ocena</th>
                 <th></th>
             </tr>
-        </thead>
-        <tbody>
-        {% for movie in movies %}
-            <tr>
-                <td>{{ movie.id }}</td>
-                <td>{{ movie.title }}</td>
-                <td>{{ movie.age }}</td>
-                <td>{{ movie.description|length > 100 ? movie.description|slice(0, 100) ~ '...' : movie.description }}</td>
-                <td>{{ movie.time|date("H:i") }}</td>
-                <td>{{ movie.category }}</td>
-                <td>{{ movie.releaseDate|date("d-m-Y")}}</td>
-                <td>{{ movie.grade }}</td>
-                <td>
-                    <a class="btn btn-dark" href="{{ path('movie_show', {'id': movie.id}) }}">Pokaż</a>
-                    <a class="btn btn-dark" href="{{ path('movie_edit', {'id': movie.id}) }}">Edytuj</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">Nie znaleziono filmów</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
 
-    <a class="btn btn-primary" href="{{ path('movie_new') }}">Dodaj nowy</a>
+            {% for movie in movies %}
+                <tr>
+                    <td>{{ movie.id }}</td>
+                    <td>{{ movie.title }}</td>
+                    <td>{{ movie.age }}</td>
+                    <td>{{ movie.description|length > 100 ? movie.description|slice(0, 100) ~ '...' : movie.description }}</td>
+                    <td>{{ movie.time|date("H:i") }}</td>
+                    <td>{{ movie.category }}</td>
+                    <td>{{ movie.grade }}</td>
+                    <td>
+                        <a class="btn btn-outline-primary waves-effect" href="{{ path('movie_show', {'id': movie.id}) }}">Pokaż</a>
+                        <a class="btn btn-outline-primary waves-effect" href="{{ path('movie_edit', {'id': movie.id}) }}">Edytuj <i class="fa fa-edit" aria-hidden="true"></i></a>
+
+
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">Nie znaleziono filmów</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="btn btn-primary" href="{{ path('movie_new') }}">Dodaj film</a>
+    </section>
 {% endblock %}
