@@ -1,0 +1,44 @@
+{% for movie in moviesSchedule %}
+
+    <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-lg-5 col-xl-4">
+
+            <!-- Featured image -->
+            <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
+                <img class="img-fluid" src="{{ asset('uploads/images/' ~ movie[0].image) }}"
+                     alt="Sample image">
+                <a href="{{ path('movie_show', {'id': movie[0].id}) }}">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-lg-7 col-xl-8">
+
+            <h3 class="font-weight-bold mb-3"><strong>{{ movie[0].title }}</strong></h3>
+
+            <p class="dark-grey-text">{{ movie[0].description }}</p>
+
+            <p>Godzina seansów</p>
+
+            {% for screening in movie[0].screenings %}
+                {% if screening.startDate|date('Y-m-d') == movie.day %}
+
+                    <a href="{{ path('screening_show', {'id': screening.id}) }}"
+                       class="btn btn-outline-blue"> {{ screening.startDate|date('h:i') }}</a>
+
+                {% endif %}
+            {% endfor %}
+
+        </div>
+        <!-- Grid column -->
+
+    </div>
+    <hr class="my-5">
+
+{% endfor %}

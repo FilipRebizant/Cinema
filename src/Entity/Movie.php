@@ -57,7 +57,7 @@ class Movie
     private $time;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Screening", mappedBy="movies")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Screening", mappedBy="movies", fetch="EXTRA_LAZY")
      */
     private $screenings;
     
@@ -69,8 +69,7 @@ class Movie
      */
     private $image;
 
-    
-    
+
 
     public function __construct()
     {
