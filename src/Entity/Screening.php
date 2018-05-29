@@ -33,7 +33,7 @@ class Screening
     private $reservations;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Movie", inversedBy="screenings")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Movie", inversedBy="screenings", fetch="EXTRA_LAZY")
      */
     private $movies;
 

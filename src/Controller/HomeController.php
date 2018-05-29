@@ -27,6 +27,12 @@ class HomeController extends AbstractController
         $previousDate = null;
         $schedule = [];
 
+
+
+        $movieSchedule = $moviesRepository->getSchedule();
+
+
+
         foreach($currentScreenings as $screening)
         {
             if($screening['day'] == $previousDate)
@@ -44,6 +50,7 @@ class HomeController extends AbstractController
             'movies' => $movies,
             'newMovies' => $newMovies,
             'currentScreenings'=> $schedule,
+            'moviesSchedule' => $movieSchedule
         ]);
     }
 }

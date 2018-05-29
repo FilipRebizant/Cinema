@@ -47,4 +47,15 @@ class MovieRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function getSchedule()
+    {
+        return $this->createQueryBuilder('m')
+            ->addSelect('DATE_FORMAT(s.start_date, \'%Y-%m-%d\') as day')
+            ->innerJoin('m.screenings', 's')
+            ->addGroupBy('day')
+            ->groupBy('m.title')
+            ->getQuery()
+            ->getResult();
+    }
+
 }
