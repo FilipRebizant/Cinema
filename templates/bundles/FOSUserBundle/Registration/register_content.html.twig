@@ -1,4 +1,6 @@
 {% trans_default_domain 'FOSUserBundle' %}
+{% form_theme form _self %}
+{% use "bootstrap_4_horizontal_layout.html.twig" %}
 
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}    
 {{ form_widget(form) }}

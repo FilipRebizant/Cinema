@@ -19,9 +19,7 @@ class MovieType extends AbstractType {
                         'class' => 'form-control',
                    ),
                      'label' => 'Tytuł'
-                )
-
-                )
+                ))
                 ->add('age' , null, array(
                     'attr' => array('class' => 'form-control'),
                      'label' => 'Wymagany wiek',
@@ -36,7 +34,7 @@ class MovieType extends AbstractType {
                     'label' => 'Kategoria',
                 ))
                 ->add('time', null, array('attr' => array('class' => 'form-control'),
-                    'label' => 'Czas',
+                    'label' => 'Czas trwania',
                 ))
                 ->add('release_date', null, array(
                     'attr' => array('class' => 'form-control'),
@@ -52,7 +50,7 @@ class MovieType extends AbstractType {
 
         ;
     }
-//Type\DateType::class
+
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults([
             'data_class' => Movie::class,

@@ -15,10 +15,10 @@ class ScreeningType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('start_date', Type\DateType::class, array(
-                'widget' => 'single_text',
-                'html5' => false,
-                'attr' => ['class' => 'datetimepicker'],
+            ->add('start_date', null, array(
+//                'widget' => 'single_text',
+//                'html5' => false,
+//                'attr' => ['class' => 'datetimepicker'],
                 'label' => 'Godzina rozpoczęcia',
             ))
             ->add('price',null, array(

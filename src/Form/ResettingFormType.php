@@ -33,6 +33,7 @@ class ResettingFormType extends AbstractType
                 'attr' => array(
                     'autocomplete' => 'new-password',
                 ),
+                'label' => 'Hasło'
             ),
             'first_options' => array('label' => 'form.new_password'),
             'second_options' => array('label' => 'form.new_password_confirmation'),

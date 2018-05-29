@@ -26,7 +26,7 @@ class RegistrationFormType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
                 ->add('email', EmailType::class, array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle',  'attr' => ['class' => 'form-control']))
-                ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle', 'attr' => ['class' => 'form-control']))
+                ->add('username', null, array('label' => 'Użytkownik', 'translation_domain' => 'FOSUserBundle', 'attr' => ['class' => 'form-control']))
                 ->add('plainPassword', RepeatedType::class, array(
                     'type' => PasswordType::class,
                     'options' => array(
@@ -39,6 +39,7 @@ class RegistrationFormType extends AbstractType {
                     'first_options' => array('label' => 'form.password'),
                     'second_options' => array('label' => 'form.password_confirmation'),
                     'invalid_message' => 'fos_user.password.mismatch',
+                    'label' => 'Hasło'
                 ))
         ;
     }
