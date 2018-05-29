@@ -26,7 +26,7 @@ class HomeController extends AbstractController
         $currentScreenings = $screeningRepository->getScreeningSchedule();
         $previousDate = null;
         $schedule = [];
-      
+
         foreach($currentScreenings as $screening)
         {
             if($screening['day'] == $previousDate)

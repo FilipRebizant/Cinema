@@ -1,10 +1,29 @@
-{#{% form_theme form _self %}#}
-{#{% use "bootstrap_4_horizontal_layout.html.twig" %}#}
+{{ form_errors(form) }}
+<form name="hall" method="post">
 
-{#{{ form_widget(form) }}#}
-    {{ form_errors(form.number_of_seats_v) }}
-    {{ form_label(form.number_of_seats_v) }}
-    {{ form_widget(form.number_of_seats_v) }}
+    {{ form_widget(form._token) }}
 
-    {#<button class="btn">{{ button_label|default('Zapisz') }}</button>#}
-{#{{ form_end(form) }}#}
+    <div class="md-form">
+        <i class="fa fa-arrow-up prefix grey-text"></i>
+        <input type="number"  class="form-control" name="hall[number_of_seats_v]" id="number_of_seats_v">
+        <label for="number_of_seats_v">Ilość rzędów</label>
+    </div>
+
+    <div class="md-form">
+        <i class="fa fa-arrow-right prefix grey-text"></i>
+        <input type="number" id="number_of_seats_h" class="form-control" name="hall[number_of_seats_h]">
+        <label for="number_of_seats_h">Ilość miejsc</label>
+    </div>
+
+    <div class="md-form">
+        <i class="fa fa-list-ol prefix grey-text"></i>
+        <input type="number" id="hall_number" class="form-control" name="hall[hall_number]">
+        <label for="hall_number">Numer sali</label>
+    </div>
+
+    <div class="m-4">
+        <button class="btn btn-outline-blue" type="submit">Dodaj</button>
+    </div>
+</form>
+
+

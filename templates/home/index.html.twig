@@ -7,7 +7,7 @@
     <section class="new_movies">
         <h2>Nowości</h2>
         <div class="row">
-{{ dump(currentScreenings) }}
+            {#{{ dump(currentScreenings) }}#}
             {% for newMovie in newMovies %}
                 <div class="col-md-4">
                     <!-- Card -->
@@ -16,7 +16,7 @@
                         <!-- Card image -->
                         <div class="view overlay">
                             <img class="card-img-top"
-                                 src="{{ asset('uploads/images/' ~ newMovie.image)  }}"
+                                 src="{{ asset('uploads/images/' ~ newMovie.image) }}"
                                  alt="Card image cap">
                             <a href="{{ path('movie_show', {'id': newMovie.id}) }}">
                                 <div class="mask rgba-white-slight"></div>
@@ -52,22 +52,21 @@
         <h2 class="h1-responsive font-weight-bold text-center my-5">Repertuar</h2>
 
 
-
         <!-- Tab panels -->
-        
+
         <div class="tab">
             {% for day, screenings in currentScreenings %}
-               <div class="panel panel-default">
-                   <div class="panel-heading text-center"><strong>{{day}}</strong></div>
-                
+            <div class="panel panel-default">
+                <div class="panel-heading text-center"><strong>{{ day }}</strong></div>
+
                 <div class="panel-body">
-                {% for screening in screenings %}
-                    <div class="container">
-                       
-                        
+                    {% for screening in screenings %}
+                        <div class="container">
+
+
                             <br>
                             {{ screening.startDate|date('d.m') }}
-                            
+
                             {% for movie in screening.movies %}
                                 <!-- Grid row -->
                                 <div class="row">
@@ -77,7 +76,8 @@
 
                                         <!-- Featured image -->
                                         <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-                                            <img class="img-fluid" src="{{ asset('uploads/images/' ~ movie.image)  }}" alt="Sample image">
+                                            <img class="img-fluid" src="{{ asset('uploads/images/' ~ movie.image) }}"
+                                                 alt="Sample image">
                                             <a href="{{ path('movie_show', {'id': movie.id}) }}">
                                                 <div class="mask rgba-white-slight"></div>
                                             </a>
@@ -93,12 +93,13 @@
 
                                         <p class="dark-grey-text">{{ movie.description }}</p>
 
-                                        <p>Godziny seansów</p>
-
-                                        {% for screening in movie.screenings %}
-                                            <a href="{{ path('screening_show', {'id': movie.id}) }}"
-                                               class="btn btn-elegant">{{ screening.startDate ? screening.startDate|date('H:i') : '' }}</a>
-                                        {% endfor %}
+                                        <p>Godzina seansi</p>
+                                        <a class="btn btn-outline-blue"
+                                           href="{{ path('screening_show', {'id': movie.id}) }}">{{ screening.startDate|date('h:i') }}</a>
+                                        {#{% for screening in screening.movie %}#}
+                                        {#<a href="{{ path('screening_show', {'id': movie.id}) }}"#}
+                                        {#class="btn btn-elegant">{{ screening.startDate ? screening.startDate|date('H:i') : '' }}</a>#}
+                                        {#{% endfor %}#}
 
                                     </div>
                                     <!-- Grid column -->
@@ -110,15 +111,14 @@
 
                             {% endfor %}
 
-                       </div>
-                {%endfor%}
+                        </div>
+                    {% endfor %}
                 </div>
                 <!--/.Panel 1-->
-            {% endfor %}
-              
-        </div>
-        </div>
+                {% endfor %}
 
+            </div>
+        </div>
 
 
     </section>

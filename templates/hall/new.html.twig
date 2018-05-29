@@ -3,9 +3,11 @@
 {% block title %}New Hall{% endblock %}
 
 {% block body %}
-    <h1>Create new Hall</h1>
+    <section class="admin_area">
+    <h1 class="admin_area__heading">Dodaj sale</h1>
 
     {{ include('hall/_form.html.twig') }}
 
-    <a href="{{ path('hall_index') }}">back to list</a>
+    <a class="admin_area__list_link" href="{{ path('hall_index') }}">Powrót do listy</a>
+    </section>
 {% endblock %}

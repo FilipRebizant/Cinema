@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Screening{% endblock %}
+{% block title %}Nowy seans{% endblock %}
 
 {% block body %}
-    <h1>Create new Screening</h1>
+    <div class="admin_area">
+        <h1 class="admin_area__heading">Dodaj seans</h1>
 
-    {{ include('screening/_form.html.twig') }}
+        {{ include('screening/_form.html.twig') }}
 
-    <a href="{{ path('screening_index') }}">back to list</a>
+        <a class="admin_area__list_link" href="{{ path('screening_index') }}">Powrót do listy</a>
+    </div>
 {% endblock %}

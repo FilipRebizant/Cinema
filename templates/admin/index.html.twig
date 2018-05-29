@@ -3,58 +3,45 @@
 {% block title %}Admin site{% endblock %}
 
 {% block body %}
-    <h1>Admin page</h1>
-   <div class="text-center" style="padding:50px 0">
-       
-       Welcome Admin {{app.user.username}}
-       
-{#       <div class="dropdown show">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Service
-            </a>
-            
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="{{ path('movie_index') }}">Filmy</a>
-              <a class="dropdown-item" href="{{ path('hall_index') }}">Sale</a>
-              <a class="dropdown-item"  href="{{ path('screening_index') }}">Seanse</a>
-              <a class="dropdown-item"  href="{{ path('reservation_index') }}">Rezerwacje</a>
-              <a class="dropdown-item"  href="{{ path('user_index') }}">Users</a>
-{#            </div>#}
-        
-       
-<ul class="list-group">
-  <li class="list-group-item">
-      <a class="nav-link js-scroll-trigger" href="{{ path('movie_index') }}">Filmy</a>
-  </li>
-  <li class="list-group-item">
-       <a class="nav-link js-scroll-trigger" href="{{ path('hall_index') }}">Sale</a>
-  </li>
-  <li class="list-group-item">
-      <a class="nav-link js-scroll-trigger" href="{{ path('screening_index') }}">Seanse</a>
-  </li>
-  <li class="list-group-item">
-      <a class="nav-link js-scroll-trigger" href="{{ path('reservation_index') }}">Rezerwacje</a>
-  </li>
-  <li class="list-group-item">
-      <a class="nav-link js-scroll-trigger" href="{{ path('admin_users') }}">Użytkownicy</a>
-  </li>
-  
-  
-  
-</ul>
-  <hr>
-  <h2>KONTO</h2>
-  <ul class="list-group">
-      <li class="list-group-item">
-      <a class="nav-link js-scroll-trigger" href="{{ path('fos_user_profile_edit') }}">Edytuj konto</a>
-    </li>
+    <section class="admin_area">
+        <h1 class="admin_area__heading">Panel administracyjny</h1>
+        <div class="text-center">
 
-    <li class="list-group-item">
-        <a class="nav-link js-scroll-trigger" href="{{ path('fos_user_change_password') }}">Zmień hasło</a>
-    </li>
-    <li class="list-group-item">
-      <a class="nav-link js-scroll-trigger" href="/logout">Wyloguj</a>
-  </li>
-  </ul>
-</div>
- {% endblock %}
+            Witaj {{ app.user.username }}
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a class="nav-link js-scroll-trigger" href="{{ path('movie_index') }}">Filmy</a>
+                </li>
+                <li class="list-group-item">
+                    <a class="nav-link js-scroll-trigger" href="{{ path('hall_index') }}">Sale</a>
+                </li>
+                <li class="list-group-item">
+                    <a class="nav-link js-scroll-trigger" href="{{ path('screening_index') }}">Seanse</a>
+                </li>
+                <li class="list-group-item">
+                    <a class="nav-link js-scroll-trigger" href="{{ path('reservation_index') }}">Rezerwacje</a>
+                </li>
+                <li class="list-group-item">
+                    <a class="nav-link js-scroll-trigger" href="{{ path('admin_users') }}">Użytkownicy</a>
+                </li>
+
+
+            </ul>
+            <hr>
+            <h2>KONTO</h2>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a class="nav-link js-scroll-trigger" href="{{ path('fos_user_profile_edit') }}">Edytuj konto</a>
+                </li>
+
+                <li class="list-group-item">
+                    <a class="nav-link js-scroll-trigger" href="{{ path('fos_user_change_password') }}">Zmień hasło</a>
+                </li>
+                <li class="list-group-item">
+                    <a class="nav-link js-scroll-trigger" href="/logout">Wyloguj</a>
+                </li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}

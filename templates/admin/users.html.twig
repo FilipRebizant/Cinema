@@ -3,43 +3,44 @@
 {% block title %}Movie index{% endblock %}
 
 {% block body %}
-    <h1>Użytkownicy</h1>
+    <section class="admin_area">
+        <h1>Użytkownicy</h1>
 
-    <table class="table">
-        <thead class="mdb-color darken-3">
-            <tr class="text-white">
+        <table class="table">
+            <thead>
+            <tr>
                 <th>Id</th>
-                <th>Username</th>
-                <th>E-mail</th>
-                <th>Role</th>
+                <th>Nazwa użytkownika</th>
+                <th>adres E-mail</th>
+                <th>Rola</th>
                 <th></th>
             </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.email }}</td>
-                <td>
-                    {%for role in user.roles%}
-                        <p>{{role}}</p>
-                    {%endfor%}
-                
-                </td>
-                
-                <td>
-                    <a class="btn btn-dark" href="{{ path('admin_user_promote', {'id': user.id}) }}">Set Roles</a>
-{#                    <a class="btn btn-dark" href="{{ path('movie_edit', {'id': movie.id}) }}">Edytuj</a>#}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">Nie znaleziono filmów</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        {% for role in user.roles %}
+                            <p>{{ role }}</p>
+                        {% endfor %}
 
-    <a class="btn btn-primary" href="{{ path('fos_user_registration_register') }}">Dodaj nowego użytkownika</a>
+                    </td>
+
+                    <td>
+                        <a class="btn btn-outline-blue" href="{{ path('admin_user_promote', {'id': user.id}) }}">Ustaw role</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">Brak rekordow</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="btn btn-outline-blue" href="{{ path('fos_user_registration_register') }}">Dodaj nowego użytkownika</a>
+    </section>
 {% endblock %}
