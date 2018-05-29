@@ -32,7 +32,7 @@
                         <p>Dozwolone od lat: <span class="highlight">{{ movie.age }}</span></p>
                         <p>Ocena: <span class="highlight">{{ movie.grade }}</span></p>
                         <p>Czas trwania <span class="highlight">{{ movie.time|date('H:i') }}</span></p>
-                        {#<p>Data premiery <span class="highlight">{{ movie.release_date }}</span></p>#}
+                        <p>Data premiery <span class="highlight">{{ movie.getReleaseDate()|date('d.m.Y') }}</span></p>
                     </div>
                     <hr class="hr-dark my-5 wow fadeInDown" data-wow-delay="0.4s">
                 </div>

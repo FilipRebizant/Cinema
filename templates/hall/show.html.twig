@@ -3,10 +3,11 @@
 {% block title %}Hall{% endblock %}
 
 {% block body %}
-    <h1>Hall</h1>
+    <section class="admin_area">
+        <h1>Sala</h1>
 
-    <table class="table">
-        <tbody>
+        <table class="table">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ hall.id }}</td>
@@ -20,40 +21,13 @@
                 <th>Number_of_seats_h</th>
                 <td>{{ hall.getNumberOfSeatsH }}</td>
             </tr>
-            {#<tr>#}
-                {#<th>Hall_number</th>#}
-                {#<td>{{ hall.getHallNumber }}</td>#}
+            </tbody>
+        </table>
 
-                {#<td>{{ hall.numberOfSeatsV }}</td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th>Number_of_seats_h</th>#}
-                {#<td>{{ hall.numberOfSeatsH }}</td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th>Hall_number</th>#}
-                {#<td>{{ hall.hallNumber }}</td>#}
+        <a href="{{ path('hall_index') }}">Powrot to listy</a>
 
-            {#</tr>#}
+        {#<a href="{{ path('hall_edit', {'id': hall.id}) }}">Edytuj</a>#}
 
-                {#<td>{{ hall.numberOfSeatsV }}</td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th>Number_of_seats_h</th>#}
-                {#<td>{{ hall.numberOfSeatsH }}</td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th>Hall_number</th>#}
-                {#<td>{{ hall.hallNumber }}</td>#}
-            {#</tr>#}
-
-
-        </tbody>
-    </table>
-
-    <a href="{{ path('hall_index') }}">back to list</a>
-
-    <a href="{{ path('hall_edit', {'id': hall.id}) }}">edit</a>
-
-    {{ include('hall/_delete_form.html.twig') }}
+        {{ include('hall/_delete_form.html.twig') }}
+    </section>
 {% endblock %}
