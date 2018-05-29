@@ -18,6 +18,9 @@ $(document).ready(function () {
             this.$seat = this.$seats__container.find('.seats__seat');
             this.$form = $('#reservation__form');
             this.$btn = this.$form.find('button');
+            this.$firstName = $('#firstname');
+            this.$surname = $('#surname');
+            this.$alert_container = $('.alert');
         },
 
         bindEvents: function () {
@@ -103,26 +106,70 @@ $(document).ready(function () {
         sendData: function (e) {
 
             e.preventDefault();
+
             var reserved_seats = this.reserved_seats,
                 screening_id = this.screening_id,
-                renderSeats = this.renderSeats.bind(this);
+                renderSeats = this.renderSeats.bind(this),
+                alert_container = this.$alert_container,
+                $firstname = this.$firstName,
+                $surname = this.$surname;
 
-            $.ajax({
+            if (this.validateData()) {
 
-                url: this.$form.attr('action'),
-                data: {seats: reserved_seats, screeningId: screening_id},
-                type: 'post'
+                $.ajax({
+
+                    url: this.$form.attr('action'),
+                    data: {
+                        seats: reserved_seats,
+                        screeningId: screening_id,
+                        firstname: $firstname.val(),
+                        surname: $surname.val()
+                    },
+                    type: 'post'
 
 
-            }).done(function (data) {
+                }).done(function (data) {
 
-                $('.alert-success').html(data.info);
-                $('.hide').fadeIn();
-                renderSeats();
+                    alert_container.addClass('alert-success').html(data.info);
+                    alert_container.fadeIn().delay(3000).fadeOut();
+                    renderSeats();
+                    $firstname.val("");
+                    $surname.val("");
 
-            });
-            this.reserved_seats = [];
+                });
+                this.reserved_seats = [];
+            }
 
+        },
+
+        validateData: function () {
+            var reserved_seats = this.reserved_seats,
+                $firstname = this.$firstName,
+                $surname = this.$surname;
+
+            if (reserved_seats.length == 0) {
+                this.checkField('Zaznacz miejsca do zarezerwowania');
+                return;
+            }
+
+            if ($firstname.val() == "") {
+                this.checkField('Podaj imię');
+                return;
+            }
+
+            if ($surname.val() == "") {
+                this.checkField("Podaj nazwisko");
+                return;
+            }
+
+            this.$alert_container.removeClass('alert-danger');
+
+            return true;
+        },
+
+        checkField: function (info) {
+            this.$alert_container.addClass('alert-danger').html(info);
+            this.$alert_container.fadeIn().delay(3000).fadeOut();
         }
 
     };

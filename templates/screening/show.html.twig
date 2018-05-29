@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lista filmów{% endblock %}
+{% block title %}Seans{% endblock %}
 
 {% block body %}
 
@@ -9,9 +9,9 @@
         <input type="hidden" value="{{ screening.getHall().getNumberOfSeatsV() }}" id="rows_number">
         <input type="hidden" value="{{ screening.getHall().getNumberOfSeatsH() }}" id="seats_number">
         <input type="hidden" value="{{ path('reservations_get', {'id': screening.id}) }}" id="reservation_url">
-        <input type="hidden" value="{{screening.id}}" id="screening_id">
+        <input type="hidden" value="{{ screening.id }}" id="screening_id">
 
-        <div class="alert alert-success hide"></div>
+        <div class="alert hide"></div>
 
         <h5 class="hall__number">Sala {{ screening.hall }}</h5>
 
@@ -19,7 +19,7 @@
         {% for movie in screening.movies %}
 
             <h2 class="hall__movie_title">{{ movie.title }}</h2>
-            <h5>Godzina rozpoczęcia {{ screening.startDate ? screening.startDate|date('H:i') : '' }}</h5>
+            <p>Godzina rozpoczęcia {{ screening.startDate ? screening.startDate|date('H:i') : '' }}</p>
 
         {% endfor %}
 
@@ -29,20 +29,39 @@
 
         <section id="seats_container" class="seats__container"></section>
 
-        <form id="reservation__form" action="{{ path('reservation_new') }}" method="post">
+        <form id="reservation__form" class="hall__reservation_form" action="{{ path('reservation_new') }}"
+              method="post">
+            <div class="col-md-6">
+                <div class="md-form hall__reservation_form__divider">
+                    <i class="fa fa-user prefix grey-text"></i>
+                    <input type="text" class="form-control" name="screening[firstname]" id="firstname">
+                    <label for="firstname">Imię</label>
+                </div>
 
-            <button class="btn btn-primary">Zarezerwuj</button>
+                <div class="md-form hall__reservation_form__divider">
+                    <i class="fa fa-user prefix grey-text"></i>
+                    <input type="text" class="form-control" name="screening[lastname]" id="surname">
+                    <label for="lastname">Nazwisko</label>
+                </div>
 
+                <button class="btn text-center btn-outline-blue">Zarezerwuj</button>
+            </div>
         </form>
 
-        <hr>
+        <hr class="my-5">
         <section class="hall__legend">
+
             <h5 class="mb-3">Legenda</h5>
             <ul class="hall__legend_list">
                 <li class="hall__legend_list__list_item hall__legend_list__list_item-free">
-                    <span class="hall__legend_list__list_item-free"></span>Wolne miejsce</li>
-                <li class="hall__legend_list__list_item"><span class="hall__legend_list__list_item-booked"></span>Zajęte miejsce</li>
-                <li class="hall__legend_list__list_item"><span class="hall__legend_list__list_item-active"></span>Aktualnie rezerwowane miejsce</li>
+                    <span class="hall__legend_list__list_item-free"></span>Wolne miejsce
+                </li>
+                <li class="hall__legend_list__list_item"><span class="hall__legend_list__list_item-booked"></span>Zajęte
+                    miejsce
+                </li>
+                <li class="hall__legend_list__list_item"><span class="hall__legend_list__list_item-active"></span>Aktualnie
+                    rezerwowane miejsce
+                </li>
             </ul>
         </section>
 

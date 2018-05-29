@@ -37,6 +37,8 @@ class ReservationController extends Controller
         $reservationNumber = $reseravtion ?  $reseravtion[0]->getReservationNumber() + 1 : 1;
        
         $seats = $request->get('seats');
+        $firstName = $request->get('firstname');
+        $surname = $request->get('surname');
         $screening = $this->getDoctrine()
                     ->getRepository(Screening::class)
                     ->find($screeningId);
@@ -48,11 +50,15 @@ class ReservationController extends Controller
             $reservation->setSeat($seat['seat']);
             $reservation->setRow($seat['row']);
             $reservation->setReservationNumber($reservationNumber);
+            $reservation->setFirstname($firstName);
+            $reservation->setSurname($surname);
             
             $em = $this->getDoctrine()->getManager();
             $em->persist($reservation);
             $em->flush();
         }
+
+        return new JsonResponse(['info' => 'Pomyślnie zarezerwowano miejsca'], 200);
     }
 
     /**

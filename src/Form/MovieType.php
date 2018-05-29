@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Movie;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -13,23 +14,45 @@ class MovieType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-                ->add('title', null, array('attr' => array('class' => 'form-control')))
-                ->add('age' , null, array('attr' => array('class' => 'form-control')))
-                ->add('description', null, array('attr' => array('class' => 'form-control')))
+                ->add('title', null, array(
+                    'attr' => array(
+                        'class' => 'form-control',
+                   ),
+                     'label' => 'Tytuł'
+                )
+
+                )
+                ->add('age' , null, array(
+                    'attr' => array('class' => 'form-control'),
+                     'label' => 'Wymagany wiek',
+                ))
+                ->add('description', null, array(
+                    'attr' => array('class' => 'form-control'),
+                    'label' => 'Opis',
+                ))
                 ->add('category', ChoiceType::class, array(
                     'choices' => $this->getCategories(),
-                    'attr' => array('class' => 'form-control')
+                    'attr' => array('class' => 'form-control'),
+                    'label' => 'Kategoria',
                 ))
-                ->add('time', null, array('attr' => array('class' => 'form-control')))
-                ->add('release_date', null, array('attr' => array('class' => 'form-control')))
+                ->add('time', null, array('attr' => array('class' => 'form-control'),
+                    'label' => 'Czas',
+                ))
+                ->add('release_date', null, array(
+                    'attr' => array('class' => 'form-control'),
+                    'label' => 'Data premiery',
+                ))
                 ->add('grade', ChoiceType::class, array(
                     'choices' => $this->getChoices(),
-                    'attr' => array('class' => 'form-control')))
-                ->add('image', FileType::class, array('label' => 'Image', 'attr' => array('class' => 'form-control')))
+                    'attr' => array('class' => 'form-control'),
+                    'label' => 'Ocena',
+                ))
+                ->add('image', FileType::class, array('label' => 'Zdjęcie', 'attr' => array(
+                    'class' => 'form-control')))
 
         ;
     }
-
+//Type\DateType::class
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults([
             'data_class' => Movie::class,

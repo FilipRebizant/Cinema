@@ -19,10 +19,18 @@ class ScreeningType extends AbstractType
                 'widget' => 'single_text',
                 'html5' => false,
                 'attr' => ['class' => 'datetimepicker'],
+                'label' => 'Godzina rozpoczęcia',
             ))
-            ->add('price',null, array('attr' => array('class' => 'tesst')))
-            ->add('movies')
-            ->add('hall')
+            ->add('price',null, array(
+                'label' => 'Cena biletu',
+                'attr' => array('class' => '')
+            ))
+            ->add('movies', null, array(
+                'label' => 'Grany film',
+            ))
+            ->add('hall', null, array(
+                'label' => 'Numer sali',
+            ))
         ;
     }
 

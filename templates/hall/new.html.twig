@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Hall{% endblock %}
+{% block title %}Dodaj sale{% endblock %}
 
 {% block body %}
     <section class="admin_area">
-    <h1 class="admin_area__heading">Dodaj sale</h1>
+        <h1 class="admin_area__heading">Dodaj sale</h1>
 
-    {{ include('hall/_form.html.twig') }}
+        {{ include('hall/_form.html.twig') }}
 
-    <a class="admin_area__list_link" href="{{ path('hall_index') }}">Powrót do listy</a>
+        <a class="admin_area__list_link" href="{{ path('hall_index') }}"><i class="fa fa-arrow-left"></i>Powrót do listy</a>
     </section>
 {% endblock %}
