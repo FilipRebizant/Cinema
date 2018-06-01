@@ -79,12 +79,15 @@ class HallController extends Controller
      */
     public function delete(Request $request, Hall $hall): Response
     {
+        
         if ($this->isCsrfTokenValid('delete'.$hall->getId(), $request->request->get('_token'))) {
+             
             $em = $this->getDoctrine()->getManager();
             $em->remove($hall);
+            
             $em->flush();
         }
-
+       
         return $this->redirectToRoute('hall_index');
     }
 }

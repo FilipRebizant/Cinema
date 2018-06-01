@@ -34,7 +34,7 @@ class Hall
     private $hall_number;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Screening", mappedBy="hall_id", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Screening", mappedBy="hall", orphanRemoval=true)
      */
     private $screenings;
 
@@ -98,7 +98,7 @@ class Hall
     {
         if (!$this->screenings->contains($screening)) {
             $this->screenings[] = $screening;
-            $screening->setHallId($this);
+            $screening->setHall($this);
         }
 
         return $this;
@@ -109,8 +109,8 @@ class Hall
         if ($this->screenings->contains($screening)) {
             $this->screenings->removeElement($screening);
             // set the owning side to null (unless already changed)
-            if ($screening->getHallId() === $this) {
-                $screening->setHallId(null);
+            if ($screening->getHall() === $this) {
+                $screening->setHall(null);
             }
         }
 

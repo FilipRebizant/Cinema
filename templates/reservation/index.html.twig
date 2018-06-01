@@ -29,11 +29,11 @@
                     <td>{{ reservation.surname }}</td>
                     <td>{{ reservation.getSeat() }}</td>
                     <td>{{ reservation.getRow() }}</td>
-                    <td>
-                        <a class="btn btn-outline-blue" href="{{ path('reservation_edit', {'id': reservation.id}) }}">Edytuj
-                            <i class="fa fa-edit"></i></a>
-                        <a class="btn btn-outline-blue" href="{{ path('reservation_delete', {'id': reservation.id}) }}">Usuń
-                            <i class="fa fa-trash"></i></a>
+                    <td class="row">
+                        <button  class="btn btn-outline-blue" href="{{ path('reservation_edit', {'id': reservation.id}) }}">Edytuj
+                            <i class="fa fa-edit"></i></button>
+                        
+                           {{ include('reservation/_delete_form.html.twig') }}  
                     </td>
                 </tr>
             {% else %}

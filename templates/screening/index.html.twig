@@ -30,9 +30,9 @@
                         {% endfor %}
                     </td>
 
-                    <td>
-                        <a class="btn btn-outline-blue" href="{{ path('screening_edit', {'id': screening.id}) }}">Edytuj <i class="fa fa-edit"></i></a>
-                        <a class="btn btn-outline-blue" href="{{ path('screening_delete', {'id': screening.id}) }}">Usuń <i class="fa fa-trash"></i></a>
+                    <td class="row">
+                        <button class="btn btn-outline-blue" href="{{ path('screening_edit', {'id': screening.id}) }}">Edytuj <i class="fa fa-edit"></i></button>
+                        {{ include('screening/_delete_form.html.twig') }}
                     </td>
                 </tr>
             {% else %}

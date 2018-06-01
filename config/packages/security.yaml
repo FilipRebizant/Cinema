@@ -62,10 +62,10 @@ security:
     # Note: Only the *first* access control that matches will be used
     
     access_control:
-        - { path: ^/movie/edit, role: ROLE_SUPER_ADMIN }
-        - { path: ^/movie/delete, role: ROLE_SUPER_ADMIN }
-        - { path: ^/movie/new, role: ROLE_SUPER_ADMIN }
-        - { path: ^/register, role: ROLE_SUPER_ADMIN }
+        - { path: ^/movie/edit, role: ROLE_USER }
+        - { path: ^/movie/delete, role: ROLE_USER }
+        - { path: ^/movie/new, role: ROLE_USER }
+        - { path: ^/register, role: ROLE_USER }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY  }
         - { path: ^/admin, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
