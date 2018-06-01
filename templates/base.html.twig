@@ -1,14 +1,13 @@
 {% include 'partials/header.html.twig' %}
 {% include 'partials/navbar.html.twig' %}
 <div class="container">
-    {% block body %}{% endblock %}
+
+{% block body %}{% endblock %}
 </div>
 <script src="{{ asset('build/js/jQuery_3.3.1.js') }}"></script>
 <script src="{{ asset('build/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('build/js/mdb.min.js') }}"></script>
-{#<script src="{{ asset('build/js/date-picker.js') }}"></script>#}
 <script src="{{ asset('build/js/app.js') }}"></script>
-{#<script src="{{ asset('build/js/jquery.datetimepicker.js') }}"></script>#}
 {% block javascripts %}{% endblock %}
 
 {% include 'partials/footer.html.twig' %}

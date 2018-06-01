@@ -3,19 +3,66 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/xampp/htdocs/Cinema/templates/hall/edit.html.twig</file>
-            <file>file:/E:/xampp/htdocs/Cinema/templates/admin/promote.html.twig</file>
-            <file>file:/E:/xampp/htdocs/Cinema/src/Form/PromoteType.php</file>
+            <file>file:/E:/xampp/htdocs/Cinema/config/packages/doctrine_migrations.yaml</file>
+            <file>file:/E:/xampp/htdocs/Cinema/public/uploads/images/ab1734a48294f7910a08111308375c5b_1.jpeg</file>
+            <file>file:/E:/xampp/htdocs/Cinema/src/Entity/Hall.php</file>
             <file>file:/E:/xampp/htdocs/Cinema/src/Form/MovieType.php</file>
-            <file>file:/E:/xampp/htdocs/Cinema/templates/hall/show.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/src/Entity/Screening.php</file>
             <file>file:/E:/xampp/htdocs/Cinema/templates/admin/index.html.twig</file>
-            <file>file:/E:/xampp/htdocs/Cinema/templates/admin/users.html.twig</file>
             <file>file:/E:/xampp/htdocs/Cinema/src/Controller/ReservationController.php</file>
-            <file>file:/E:/xampp/htdocs/Cinema/src/Controller/AdminController.php</file>
-            <file>file:/E:/xampp/htdocs/Cinema/src/Controller/HallController.php</file>
+            <file>file:/E:/xampp/htdocs/Cinema/config/packages/twig.yaml</file>
             <file>file:/E:/xampp/htdocs/Cinema/templates/hall/_form.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/src/Controller/MovieController.php</file>
             <file>file:/E:/xampp/htdocs/Cinema/templates/home/index.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/public/uploads/images/0b7fec065344865555ebc7ee1a703c7a_1.jpeg</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/hall/_delete_form.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/public/build/images/04.0284d042.png</file>
+            <file>file:/E:/xampp/htdocs/Cinema/public/uploads/images/eb7938d9ad4663fa5d07e89506fc05bb.jpeg</file>
+            <file>file:/E:/xampp/htdocs/Cinema/src/Form/PromoteType.php</file>
+            <file>file:/E:/xampp/htdocs/Cinema/public/uploads/images/1bdfa831ee48264b80e7d675b5d59594_1.jpeg</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/hall/show.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/admin/users.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/src/Entity/Movie.php</file>
+            <file>file:/E:/xampp/htdocs/Cinema/public/build/images/09.fd19309a.png</file>
+            <file>file:/E:/xampp/htdocs/Cinema/src/Controller/AdminController.php</file>
+            <file>file:/E:/xampp/htdocs/Cinema/config/packages/framework.yaml</file>
+            <file>file:/E:/xampp/htdocs/Cinema/public/build/css/app.css</file>
+            <file>file:/E:/xampp/htdocs/Cinema/config/packages/doctrine.yaml</file>
+            <file>file:/E:/xampp/htdocs/Cinema/config/routes.yaml</file>
+            <file>file:/E:/xampp/htdocs/Cinema/public/uploads/images/2a26b586d1bfb92ccb5339419cc98f7f.jpeg</file>
+            <file>file:/E:/xampp/htdocs/Cinema/public/uploads/images/20efdd16fc25472edbc3a761ff7a2849_1.jpeg</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/bundles/FOSUserBundle/Resetting/request_content.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/screening/_delete_form.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/config/packages/security.yaml</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/partials/header.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/public/uploads/images/2ca595aac1b1e86e5712042a45b3ce43.jpeg</file>
+            <file>file:/E:/xampp/htdocs/Cinema/public/uploads/images/20efdd16fc25472edbc3a761ff7a2849.jpeg</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/screening/index.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/public/uploads/images/0591cc682361bf0236c36cc5b33765a0_1.jpeg</file>
+            <file>file:/E:/xampp/htdocs/Cinema/config/services_test.yaml</file>
+            <file>file:/E:/xampp/htdocs/Cinema/config/packages/translation.yaml</file>
+            <file>file:/E:/xampp/htdocs/Cinema/src/Controller/HallController.php</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/hall/edit.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/public/build/images/arrow_left.270f72df.svg</file>
+            <file>file:/E:/xampp/htdocs/Cinema/public/uploads/images/506fcf0ca60b7d6f6da71349c31a9399.jpeg</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/reservation/_delete_form.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/public/uploads/images/711b4f399e7e13fa3f8c37d08dd9b70d.jpeg</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/reservation/index.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/config/packages/routing.yaml</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/admin/promote.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/movie/index.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/public/uploads/images/0b7fec065344865555ebc7ee1a703c7a.jpeg</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/partials/navbar.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/bundles/FOSUserBundle/layout.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/public/uploads/images/0591cc682361bf0236c36cc5b33765a0.jpeg</file>
+            <file>file:/E:/xampp/htdocs/Cinema/config/services.yaml</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/hall/index.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/public/build/images/01.0a3750e6.png</file>
+            <file>file:/E:/xampp/htdocs/Cinema/public/uploads/images/2ca595aac1b1e86e5712042a45b3ce43_1.jpeg</file>
+            <file>file:/E:/xampp/htdocs/Cinema/templates/bundles/FOSUserBundle/Resetting/request.html.twig</file>
+            <file>file:/E:/xampp/htdocs/Cinema/public/uploads/images/1bdfa831ee48264b80e7d675b5d59594.jpeg</file>
             <file>file:/E:/xampp/htdocs/Cinema/src/Controller/ScreeningController.php</file>
+            <file>file:/E:/xampp/htdocs/Cinema/config/packages/swiftmailer.yaml</file>
         </group>
     </open-files>
 </project-private>
