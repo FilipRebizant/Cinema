@@ -38,4 +38,6 @@ Yarn (opcjonalnie)
 
     hasło: qwerty
 
+
+Uwaga: Repertuar kina działa przez 7 dni od dzisiejszej daty systemowej, 7 dni przed i po od daty seansu nie wyświtli nam się nic w repertuarze na stronie głównej.
   
