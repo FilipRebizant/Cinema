@@ -1,51 +1,62 @@
 {% extends 'base.html.twig' %}
 
-
-{% block title %}Admin site{% endblock %}
+{% block title %}Panel administracyjny{% endblock %}
 
 {% block body %}
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
 
     <section class="admin_area">
-        <h1 class="admin_area__heading">Panel administracyjny</h1>
-        
+    <h1 class="admin_area__heading">Panel administracyjny</h1>
 
-        
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 class="panel-title mb-5">Witaj {{ app.user.username }}</h4>
 
-            
-<div class="container">
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        <span class="glyphicon glyphicon-bookmark"></span>Witaj {{ app.user.username }}</h3>
-                        
-                
-                </div>
-                
-                <div class="panel-body">
-                    <div class="row text-center font-normal">
-                        <div class="col-xs-6 col-md-6">
-                             <a class="btn btn-outline-blue waves-effect waves-light"  role="button" href="{{ path('movie_index') }}"><span class="glyphicon glyphicon-list-alt"></span> <br/>Filmy</a>
-                             <a class="btn btn-outline-blue waves-effect waves-light"  role="button" href="{{ path('hall_index') }}"><span class="glyphicon glyphicon-list-alt"></span> <br/>Sale</a>
-                             <a  class="btn btn-outline-blue waves-effect waves-light"  role="button" href="{{ path('screening_index') }}"><span class="glyphicon glyphicon-list-alt"></span> <br/>Seanse</a>
-                             <a class="btn btn-outline-blue waves-effect waves-light"  role="button" href="{{ path('reservation_index') }}"><span class="glyphicon glyphicon-list-alt"></span> <br/>  Rezerwacje</a>   
-                          
-                        </div>
-                        <div class="col-xs-6 col-md-6">
-                            <a class="btn btn-outline-blue waves-effect waves-light"  role="button" href="{{ path('admin_users') }}"><span class="glyphicon glyphicon-list-alt"></span> <br/>Users</a>
-                            <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-outline-blue waves-effect waves-light" role="button"><span class="glyphicon glyphicon-file"></span> <br/>Edycja</a>
-                             <a href="{{ path('fos_user_change_password') }}" class="btn btn-outline-blue waves-effect waves-light" role="button"><span class="glyphicon glyphicon-picture"></span> <br/>Zmień hasło</a>
-                             <a href="/logout" class="btn btn-outline-blue waves-effect waves-light" role="button"><span class="glyphicon glyphicon-tag"></span> <br/>Wyloguj</a>
-                        </div>
+
                     </div>
-                    <a href="{{ path('home') }}" class="btn btn-success btn-lg btn-block" role="button"><span class="glyphicon glyphicon-globe"></span> Website</a>
+
+                    <div class="panel-body">
+                        <div class="row text-center font-normal">
+                            <div class="col-xs-6 col-md-6">
+                                <h5>Kino</h5>
+                                <a class="btn btn-outline-blue waves-effect waves-light" role="button"
+                                   href="{{ path('movie_index') }}"><i class="fa fa-list"></i>
+                                    <br/>Filmy</a>
+                                <a class="btn btn-outline-blue waves-effect waves-light" role="button"
+                                   href="{{ path('hall_index') }}"><i class="fa fa-list"></i>
+                                    <br/>Sale</a>
+                                <a class="btn btn-outline-blue waves-effect waves-light" role="button"
+                                   href="{{ path('screening_index') }}"><i
+                                            class="fa fa-list"></i> <br/>Seanse</a>
+                                <a class="btn btn-outline-blue waves-effect waves-light" role="button"
+                                   href="{{ path('reservation_index') }}">
+                                    <i class="fa fa-list"></i> <br/> Rezerwacje</a>
+
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                                <h5>Konto</h5>
+                                <a class="btn btn-outline-blue waves-effect waves-light" role="button"
+                                   href="{{ path('admin_users') }}"><i class="fa fa-user"></i>
+                                    <br/>Użytkownicy</a>
+                                <a href="{{ path('fos_user_profile_edit') }}"
+                                   class="btn btn-outline-blue waves-effect waves-light" role="button"><i
+                                            class="fa fa-edit"></i> <br/>Edytuj</a>
+                                <a href="{{ path('fos_user_change_password') }}"
+                                   class="btn btn-outline-blue waves-effect waves-light" role="button"><i
+                                            class="fa fa-edit"></i> <br/>Zmień hasło</a>
+                                <a href="/logout" class="btn btn-outline-blue waves-effect waves-light"
+                                   role="button"><i class="fa fa-lock"></i> <br/>Wyloguj</a>
+                            </div>
+                        </div>
+                        <a href="{{ path('home') }}" class="btn btn-success btn-lg btn-block mt-4" role="button">Strona
+                            główna <i
+                                    class="fa fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
