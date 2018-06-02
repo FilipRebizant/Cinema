@@ -1,4 +1,7 @@
 <?php
+//echo '<pre>';
+//print_r(ini_get_all());
+//die;
 use App\Kernel;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\Dotenv\Dotenv;
