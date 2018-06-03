@@ -18,16 +18,27 @@ class HomeController extends Controller
      */
     public function index(Connection $connection)
     {
+
+
+
+
+        $query = 'SELECT * FROM halls';
+//        $query = 'findHallById(1)';
+        $statement = $connection->prepare($query);
+
+        $statement->execute();
+
+        $result = $statement->fetchAll();
 //        echo '<pre>';
 //        print_r($connection->);
 //        die;
-        $users = $connection->exec('CREATE TABLE customers2
-( customer_id number(10) NOT NULL,
-  customer_name varchar2(50) NOT NULL,
-  city varchar2(50)
-)');
+//        $test = '';
+//        $users = $connection->exec('begin findHallById(1,'.$test.');
+//        end;');
         echo '<pre>';
-        print_r($users);
+        print_r(
+            $result
+        );
         die;
 //        $db = $this->get('doctrine.dbal.oracle_connection');
 //        echo '<pre>';
