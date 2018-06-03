@@ -53,11 +53,11 @@
         <h2 class="h1-responsive font-weight-bold text-center my-5">Repertuar</h2>
 
         <div class="tab">
-            {% for day, screenings in currentScreenings %}
+{#            {% for day, screenings in currentScreenings %}
             <div class="panel panel-default">
                 <div class="panel-heading text-center"><strong>{{ day }}</strong></div>
                 <hr class="my-3">
-
+#}
 
                 <div class="panel-body">
                     {% for screening in screenings %}
@@ -108,9 +108,9 @@
                     {% endfor %}
                 </div>
                 <!--/.Panel 1-->
-                {% endfor %}
+{#                {% endfor %}#}
 
-            </div>
+{#            </div>#}
         </div>
     </section>
 

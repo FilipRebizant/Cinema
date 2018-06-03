@@ -37,8 +37,7 @@ class ScreeningController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             $rScreening = $request->get('screening');
-            dump($rScreening);
-       die();
+            
 
             $date = $rScreening['start_date']['date']['year']. '-'
                 . $rScreening['start_date']['date']['month']. '-'
@@ -50,18 +49,19 @@ class ScreeningController extends Controller
 //            dump($date);
 //            die();
             $stmt = $connection->prepare('begin '
-                . 'INSERT_SCREENING(:hall_id, :start_date, :price); '
+                . 'INSERT_SCREENING(:hall_id, :start_date, :price);'
                 . 'end;');
             $stmt->bindValue(':hall_id', $rScreening['hall']);
             $stmt->bindValue(':start_date', $date);
             $stmt->bindValue(':price', $rScreening['price']);
-//            $stmt->execute();
+            $r = $stmt->execute();
 
-
-            $secondStmt = $connection->prepare('begin '
-                . 'INSERT_SCREENING_MOVIE(:screening_id, :movie_id); '
-                . 'end;');
-
+//            dump($r);
+//            die();
+//            $secondStmt = $connection->prepare('begin '
+//                . 'INSERT_SCREENING_MOVIE(:screening_id, :movie_id); '
+//                . 'end;');
+            
 //            $secondStmt->bindValue('screening_id', 1);
 //            $secondStmt->bindValue('movie_id', $rScreening['movies'][0]);
 //            $secondStmt->execute();
@@ -95,8 +95,8 @@ class ScreeningController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $rReservation = $request->get('screening');
-            dump($rReservation);
-            die();
+//            dump($rReservation);
+//            die();
             $stmt = $connection->prepare('begin '
                 . 'UPDATE_SCREENING(:res_id, :scr_id, :seats, :rw,:res_number,:fn,:sn); '
                 . 'end;');
