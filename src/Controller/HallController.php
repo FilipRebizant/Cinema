@@ -34,11 +34,12 @@ class HallController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             $rHall = $request->get('hall');
             $stmt = $connection->prepare('begin '
                     . 'INSERT_HALL(:v, :h, :nb); '
                     . 'end;');
+
             $stmt->bindValue(':v', $rHall['number_of_seats_v']);
             $stmt->bindValue(':h', $rHall['number_of_seats_h']);
             $stmt->bindValue(':nb', $rHall['hall_number']);
@@ -94,6 +95,7 @@ class HallController extends Controller
             $stmt = $connection->prepare('begin '
                     . 'UPDATE_HALL(:id, :v, :h, :nb); '
                     . 'end;');
+
             $stmt->bindValue(':id', $rHall->getId());
             $stmt->bindValue(':v', $rHall->getNumberOfSeatsV());
             $stmt->bindValue(':h', $rHall->getNumberOfSeatsH());
@@ -114,9 +116,8 @@ class HallController extends Controller
      */
     public function delete(Request $request, Hall $hall, Connection $connection): Response
     {
-        
+
         if ($this->isCsrfTokenValid('delete'.$hall->getId(), $request->request->get('_token'))) {
-            
             $rHall = $request->get('hall');
             $stmt = $connection->prepare('begin '
                     . 'DELETE_HALL(:id); '

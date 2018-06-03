@@ -37,7 +37,7 @@ class Reservation
     /**
      * @ORM\Column(type="integer")
      */
-    private $row;
+    private $row_;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -85,7 +85,7 @@ class Reservation
 
     public function getRow()
     {
-        return $this->row;
+        return $this->row_;
     }
 
     public function getReservationNumber(): ?int
@@ -109,7 +109,7 @@ class Reservation
 
     public function setRow(int $row): self
     {
-        $this->row = $row;
+        $this->row_ = $row;
 
         return $this;
     }

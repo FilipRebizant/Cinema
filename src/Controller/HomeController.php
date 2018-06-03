@@ -18,13 +18,28 @@ class HomeController extends Controller
      */
     public function index(Connection $connection)
     {
+
+
+
+
+        $query = 'SELECT * FROM halls';
+//        $query = 'findHallById(1)';
+        $statement = $connection->prepare($query);
+
+        $statement->execute();
+
+        $result = $statement->fetchAll();
 //        echo '<pre>';
 //        print_r($connection->);
 //        die;
-//        $connection->
-        $users = $connection->exec('begin
-        create_table_hall();
-        end;');
+
+//        $test = '';
+//        $users = $connection->exec('begin findHallById(1,'.$test.');
+//        end;');
+        echo '<pre>';
+        print_r(
+            $result
+        );
         die;
 //        echo '<pre>';
 //        print_r($users);
