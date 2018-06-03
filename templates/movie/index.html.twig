@@ -30,9 +30,9 @@
                     <td>{{ movie.time|date("H:i") }}</td>
                     <td>{{ movie.category }}</td>
                     <td>{{ movie.grade }}</td>
-                    <td>
+                    <td class="form-inline">
                         <a class="btn btn-outline-blue" href="{{ path('movie_edit', {'id': movie.id}) }}">Edytuj <i class="fa fa-edit" aria-hidden="true"></i></a>
-                        <a class="btn btn-outline-blue" href="{{ path('movie_delete', {'id': movie.id}) }}">Usuń <i class="fa fa-trash" aria-hidden="true"></i></a>
+                        {{ include('movie/_delete_form.html.twig') }}
                     </td>
                 </tr>
             {% else %}

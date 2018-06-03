@@ -5,24 +5,24 @@
 
     <div class="md-form">
         <i class="fa fa-arrow-up prefix grey-text"></i>
-        <input type="number"  class="form-control" name="hall[number_of_seats_v]" id="number_of_seats_v">
+        <input type="number"  class="form-control" name="hall[number_of_seats_v]" value="{{hall.numberOfSeatsV}}" id="number_of_seats_v">
         <label for="number_of_seats_v">Ilość rzędów</label>
     </div>
 
     <div class="md-form">
         <i class="fa fa-arrow-right prefix grey-text"></i>
-        <input type="number" id="number_of_seats_h" class="form-control" name="hall[number_of_seats_h]">
+        <input type="number" id="number_of_seats_h" class="form-control" value="{{hall.numberOfSeatsH}}" name="hall[number_of_seats_h]">
         <label for="number_of_seats_h">Ilość miejsc</label>
     </div>
 
     <div class="md-form">
         <i class="fa fa-list-ol prefix grey-text"></i>
-        <input type="number" id="hall_number" class="form-control" name="hall[hall_number]">
+        <input type="number" id="hall_number" class="form-control" value="{{hall.hallNumber}}" name="hall[hall_number]">
         <label for="hall_number">Numer sali</label>
     </div>
 
     <div class="m-4">
-        <button class="btn btn-outline-blue" type="submit">Dodaj</button>
+        <button class="btn btn-outline-blue" type="submit">{% if hall.numberOfSeatsV%}Edytuj{%else%}Dodaj{%endif%}</button>
     </div>
 </form>
 
