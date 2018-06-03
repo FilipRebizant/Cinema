@@ -31,8 +31,9 @@
                     </td>
 
                     <td class="row">
-                        <button class="btn btn-outline-blue" href="{{ path('screening_edit', {'id': screening.id}) }}">Edytuj <i class="fa fa-edit"></i></button>
-                        {{ include('screening/_delete_form.html.twig') }}
+                        <a class="btn btn-outline-blue" href="{{ path('screening_edit', {'id': screening.id}) }}">Edytuj <i class="fa fa-edit"></i></a>
+
+                    {{ include('screening/_delete_form.html.twig') }}
                     </td>
                 </tr>
             {% else %}
