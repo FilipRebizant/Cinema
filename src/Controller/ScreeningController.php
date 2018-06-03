@@ -34,10 +34,13 @@ class ScreeningController extends Controller
         $form = $this->createForm(ScreeningType::class, $screening);
         $form->handleRequest($request);
 
+        $screening = $this->getDoctrine()
+            ->getRepository(Screening::class)->findBy([], ['id'=> 'DESC'], 1);
+        $screening = $screening ?  $screening[0]->getId() + 1 : 1;
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $rScreening = $request->get('screening');
-            
 
             $date = $rScreening['start_date']['date']['year']. '-'
                 . $rScreening['start_date']['date']['month']. '-'
@@ -46,27 +49,23 @@ class ScreeningController extends Controller
 
             $date = date_create($date);
             $date = date_format($date, 'Y-m-d');
-//            dump($date);
-//            die();
+
             $stmt = $connection->prepare('begin '
-                . 'INSERT_SCREENING(:hall_id, :start_date, :price);'
+                . 'INSERT_SCREENING(:hall_id, :start_date, :price, :scr_id);'
                 . 'end;');
             $stmt->bindValue(':hall_id', $rScreening['hall']);
             $stmt->bindValue(':start_date', $date);
             $stmt->bindValue(':price', $rScreening['price']);
-            $r = $stmt->execute();
+            $stmt->bindValue(':scr_id', '');
+            $stmt->execute();
 
-//            dump($r);
-//            die();
-//            $secondStmt = $connection->prepare('begin '
-//                . 'INSERT_SCREENING_MOVIE(:screening_id, :movie_id); '
-//                . 'end;');
-            
-//            $secondStmt->bindValue('screening_id', 1);
-//            $secondStmt->bindValue('movie_id', $rScreening['movies'][0]);
-//            $secondStmt->execute();
-//            dump($rScreening['movies'][0]);
-//            die();
+            $secondStmt = $connection->prepare('begin '
+                . 'INSERT_SCREENING_MOVIE(:screening_id, :movie_id); '
+                . 'end;');
+
+            $secondStmt->bindValue('screening_id', $screening);
+            $secondStmt->bindValue('movie_id', $rScreening['movies'][0]);
+            $secondStmt->execute();
 
             return $this->redirectToRoute('screening_index');
         }
@@ -92,22 +91,29 @@ class ScreeningController extends Controller
     {
         $form = $this->createForm(ScreeningType::class, $screening);
         $form->handleRequest($request);
+        $id = $screening->getId();
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $rReservation = $request->get('screening');
-//            dump($rReservation);
-//            die();
+
+            $rScreening = $request->get('screening');
+            $date = $rScreening->getStartDate();
+            $date = date_format( $date, 'Y-m-d H:i:s');
             $stmt = $connection->prepare('begin '
-                . 'UPDATE_SCREENING(:res_id, :scr_id, :seats, :rw,:res_number,:fn,:sn); '
+                . 'UPDATE_SCREENING(:scr_id,:hll_id, :start_dat, :pric); '
                 . 'end;');
-            $stmt->bindValue(':res_id', $rReservation->getId());
-            $stmt->bindValue(':scr_id', $rReservation->getScreening()->getId());
-            $stmt->bindValue(':seats', $rReservation->getSeat());
-            $stmt->bindValue(':rw', $rReservation->getRow());
-            $stmt->bindValue(':res_number', $rReservation->getReservationNumber());
-            $stmt->bindValue(':fn', $rReservation->getFirstname());
-            $stmt->bindValue(':sn', $rReservation->getSurname());
+            $stmt->bindValue(':scr_id', $rScreening->getId());
+            $stmt->bindValue(':hll_id', $rScreening->getHall()->getId());
+            $stmt->bindValue(':start_dat', $date);
+            $stmt->bindValue(':pric', $rScreening->getPrice());
             $stmt->execute();
+
+            $secondStmt = $connection->prepare('begin '
+                . 'UPDATE_SCREENING_MOVIE(:scr_id, :mvie_id); '
+                . 'end;');
+
+            $secondStmt->bindValue('scr_id', $id);
+            $secondStmt->bindValue('mvie_id', $rScreening->getMovies()[0]->getId());
+            $secondStmt->execute();
 
             return $this->redirectToRoute('screening_index');
         }
@@ -130,6 +136,7 @@ class ScreeningController extends Controller
                 . 'end;');
             $stmt->bindValue(':id', $rScreening->getId());
             $stmt->execute();
+
         }
 
         return $this->redirectToRoute('screening_index');

@@ -30,9 +30,16 @@
                         {% endfor %}
                     </td>
 
+<<<<<<< HEAD
                     <td class="form-inline">
                         <a class="btn btn-outline-blue" href="{{ path('screening_edit', {'id': screening.id}) }}">Edytuj <i class="fa fa-edit"></i></a>
                         {{ include('screening/_delete_form.html.twig') }}
+=======
+                    <td class="row">
+                        <a class="btn btn-outline-blue" href="{{ path('screening_edit', {'id': screening.id}) }}">Edytuj <i class="fa fa-edit"></i></a>
+
+                    {{ include('screening/_delete_form.html.twig') }}
+>>>>>>> 923ff7fd9c23f06694b81597fb1124bb9ce3781f
                     </td>
                 </tr>
             {% else %}
