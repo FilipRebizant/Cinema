@@ -103,10 +103,8 @@ class MovieController extends Controller {
             $stmt->bindValue(':grade', $mov->getGrade());
             $stmt->bindValue(':timeIn',date('1900-01-01 H:i:s',strtotime($time['date'])));
             $stmt->bindValue(':image', $movie->getImage());
-//            dump($stmt);
-//            die;
             $stmt->execute();
-            die;
+            
             return $this->redirectToRoute('movie_index');
         }
 

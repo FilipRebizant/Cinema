@@ -58,26 +58,6 @@ class HallController extends Controller
      */
     public function show(Hall $hall, Connection $connection): Response
     {
-//        dump($hall);
-//        die;
-//        $stmt - $connection->prepare($prepareString)->execute()
-//      ?  $var = [$hall->getId()];
-//        $sql = "declare
-//        a hall%ROWTYPE;
-//        begin
-//        SELECT_HALL_BY_ID(4, a);
-//        end;";
-//        $stmt = $connection->exec($sql);
-//        dump($stmt);
-//        die;
-////        $stmt->bindValue("name", $name);
-//        $res = $stmt->fetchAll();
-//        dump($res);
-//        die;
-//        $users = $connection->exec('SELECT * from hall');
-//        echo '<pre>';
-//        print_r($users);
-//        die;
         return $this->render('hall/show.html.twig', ['hall' => $hall]);
     }
 

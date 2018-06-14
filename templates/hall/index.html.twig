@@ -24,9 +24,9 @@
                     <td><a class="admin_area__highlighted_element" href="{{ path('hall_show', {'id': hall.id}) }}">{{ hall.getHallNumber }}</a></td>
                     <td>{{ hall.getNumberOfSeatsV }}</td>
                     <td>{{ hall.getNumberOfSeatsH }}</td>
-                    <td>
+                    <td class="form-inline">
                         <a class="btn btn-outline-primary waves-effect" href="{{ path('hall_edit', {'id': hall.id}) }}">Edytuj <i class="fa fa-edit" aria-hidden="true"></i></a>
-                        <a class="btn btn-outline-primary waves-effect" href="{{ path('hall_delete', {'id': hall.id}) }}">Usuń <i class="fa fa-trash" aria-hidden="true"></i></a>
+                        {{ include('hall/_delete_form.html.twig') }} 
                     </td>
                 </tr>
             {% else %}
