@@ -49,11 +49,14 @@ class MovieRepository extends ServiceEntityRepository
     */
     public function getSchedule()
     {
+        $date = date('Y-m-d h:i:s', strtotime("+7 days"));
+
         return $this->createQueryBuilder('m')
-            ->addSelect('DATE_FORMAT(s.start_date, \'%Y-%m-%d\') as day')
             ->innerJoin('m.screenings', 's')
-            ->addGroupBy('day')
-            ->groupBy('m.title')
+            ->where('s.start_date BETWEEN :today AND :n30days')
+            ->setParameter('today', date('Y-m-d h:i:s'))
+            ->setParameter('n30days', $date)
+            ->orderBy('s.start_date')
             ->getQuery()
             ->getResult();
     }
