@@ -17,40 +17,31 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-
         $moviesRepository = $this->getDoctrine()->getRepository(Movie::class);
-        $screeningRepository = $this->getDoctrine()->getRepository(Screening::class);
-        $screenings = $screeningRepository->findAll();
-        $movies = $moviesRepository->findAll();
         $newMovies = $moviesRepository->findBy(array(), array('id' => 'DESC'), 3);
-        $currentScreenings = $screeningRepository->getScreeningSchedule();
-        $previousDate = null;
-        $schedule = [];
+        $movieSchedule = $moviesRepository->getSchedule(); //Wszystkie filmy przez 7 dni
+        $tempMovies = [];
+        $screenings = [];
 
+        /** @var Movie $movie */
+        foreach ($movieSchedule as $movie) {
+            /** @var Screening $screening */
+            foreach ($movie->getScreenings() as $screening) {
 
-
-        $movieSchedule = $moviesRepository->getSchedule();
-
-
-
-        foreach($currentScreenings as $screening)
-        {
-            if($screening['day'] == $previousDate)
-            {
-                 $schedule[$previousDate][] = $screening[0];
-                 continue;
+                if (array_key_exists($screening->getStartDate()->format('Y-m-d'), $screenings)) {
+                    if (!in_array($movie, $screenings[$screening->getStartDate()->format('Y-m-d')])) {
+                        $screenings[$screening->getStartDate()->format('Y-m-d')][] = $movie;
+                    }
+                } else {
+                    $screenings[$screening->getStartDate()->format('Y-m-d')][] = $movie;
+                }
+                array_push($tempMovies, $movie);
             }
-            $schedule[$screening['day']][] = $screening[0];
-            $previousDate = $screening['day'];
-        }
-       
 
+        }
         return $this->render('home/index.html.twig', [
             'screenings' => $screenings,
-            'movies' => $movies,
             'newMovies' => $newMovies,
-            'currentScreenings'=> $schedule,
-            'moviesSchedule' => $movieSchedule
         ]);
     }
 }
